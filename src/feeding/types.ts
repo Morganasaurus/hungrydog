@@ -3,6 +3,19 @@
 
 export type FoodType = "dry" | "wet";
 
+/** Health conditions the app can show extra information for (src/feeding/conditions.ts). */
+export type ConditionId = "kidney";
+
+/** Nutrients we track for health conditions. */
+export type NutrientId = "phosphorus";
+
+export interface NutrientValue {
+  /** Percent of the food as fed (as it comes out of the bag or can, water included). */
+  percent: number;
+  /** How the label or maker states it: a typical (average) value, or a guaranteed minimum or maximum. */
+  kind: "typical" | "min" | "max";
+}
+
 /** One row of an adult feeding table: a dog of this weight gets this much a day. */
 export interface AdultGuidePoint {
   weightKg: number;
@@ -54,6 +67,10 @@ export interface Food {
     /** Pages researched for this food (the maker's own pages first). */
     links?: { title: string; url: string; accessed: string }[];
   };
+  /** Nutrient content, from the label or the maker's published analysis only (cited in source.notes). */
+  nutrients?: Partial<Record<NutrientId, NutrientValue>>;
+  /** Health conditions this food is made for, e.g. a renal diet → ["kidney"]. */
+  forConditions?: ConditionId[];
   /** A veterinary (prescription) diet. The app still shows the label's amounts, but tells the owner up front that
    *  their vet's plan and amounts come first. */
   vetDiet?: true;

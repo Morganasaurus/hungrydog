@@ -22,7 +22,9 @@ with defaults, never rename the key, and treat saved data as untrusted).
   - `plan.ts`: turns inputs into a plan and its notes.
   - `foods.ts`: loads the food list and builds custom foods.
   - `breeds.ts`: loads breeds and life-stage guidance.
-  - `tips.ts`: the meals-a-day and age tips (sourced wording, tested in `tips.test.ts`).
+  - `tips.ts`: the meals-a-day, age and health-condition tips (sourced wording, tested in `tips.test.ts`).
+  - `conditions.ts`: health conditions for the Health picker and the nutrients each one shows.
+  - `nutrients.ts`: daily nutrient totals for a plan (phosphorus: mg a day, g per 1,000 kcal) and the vet-limit check.
 - `src/data/foods/*.json`: **the food database**, one file per product, file name = `id`. Added progressively from
   guides the owner supplies (use the `add-food` skill).
 - `src/data/demo/*.json`: made-up foods for development (`"demo": true`). Only loaded when `import.meta.env.DEV`, so
@@ -89,6 +91,13 @@ The owner wants it to look and feel like a native iOS/iPadOS app.
 - **Veterinary diets** (`"vetDiet": true`, e.g. renal or prescription foods): amounts still come from the label,
   but the result leads with a warning that the vet's plan and amounts come first, and that weight changes belong to
   the vet's plan.
+- **Health conditions** (Health picker, `conditions.ts`): picking one shows its nutrients in the result and its tip.
+  Kidney disease shows phosphorus: mg a day (from the rounded daily grams, to 10 mg) and g per 1,000 kcal, plus an
+  optional limit from the owner's vet (mg/day). No total when any chosen food lacks a figure (it's named instead);
+  label minimums show as "at least". We never give our own "safe" phosphorus range: IRIS publishes none for diet
+  content, so the vet's limit is the only threshold. Foods record `nutrients.phosphorus` (percent as fed, kind
+  typical/min/max) and `forConditions` (e.g. renal diets → `["kidney"]`); the kidney tip cautions when no chosen
+  food is a kidney diet. A new condition needs vet-sourced tip wording, its nutrient data, and tests.
 - **Never invent label numbers.** Only what's printed on the owner's guide or on a cited page (maker's site
   first), recorded in `source.links` and `source.notes`.
 - Any change to `src/feeding/` needs tests with hand-checked expectations. If a test disagrees with the code, work
@@ -111,14 +120,23 @@ console for errors. The user may be clicking in the browser pane at the same tim
 
 ## Agents (`.claude/agents/`)
 
-The main session orchestrates; agents do focused jobs and report back.
+The main session orchestrates; agents do focused jobs and report back. Models are matched to the job: web research
+and checking against a checklist run on **sonnet** (cheaper, quick); anything where a subtle mistake reaches owners
+(the feeding maths, security) runs on the main session's model (**inherit**).
 
-- `feeding-guide-curator`: turns a feeding guide the owner shares into a `src/data/foods/` file. Writes data only.
-- `breed-researcher`: adds sourced breed weight ranges to `src/data/breeds.json`. Writes data only.
-- `nutrition-math-reviewer`: use after changing `src/feeding/` or feeding-advice wording. Read-only.
-- `responsive-ui-reviewer`: use after visible UI changes; checks phone, tablet and desktop. Read-only.
-- `security-reviewer`: use after changing `nginx.conf`, the `Dockerfile`, `docker-compose.yml`, the workflow,
-  dependencies or anything handling user input or storage, and before public releases. Read-only.
+- `feeding-guide-curator` (sonnet): researches a food on the maker's site and turns a guide into a
+  `src/data/foods/` file. Writes data only. Accuracy comes from the process (two readings, `--diff`, CI, the
+  owner's review), not the model. Images only in the chat can't reach agents: the main session reads those itself.
+- `breed-researcher` (sonnet): adds sourced breed weight ranges to `src/data/breeds.json`. Writes data only.
+- `nutrition-math-reviewer` (inherit): use after changing `src/feeding/` or feeding-advice wording. Read-only.
+- `responsive-ui-reviewer` (sonnet): use after visible UI changes; checks phone, tablet and desktop. Read-only.
+- `security-reviewer` (inherit): use after changing `nginx.conf`, the `Dockerfile`, `docker-compose.yml`, the
+  workflow, dependencies or anything handling user input or storage, and before public releases. Read-only.
+
+These agents only load when the session is opened in this repo. From another folder (e.g. the homelab workspace),
+start a general-purpose agent pointed at the agent's file **with the same model** (`model: "sonnet"` for the
+researchers), otherwise it silently runs on the main session's more expensive model. Work that doesn't need judgement
+belongs in scripts and CI instead (`food:report`, the PR **foods** check), not in an agent.
 
 ## Adding foods and releasing
 

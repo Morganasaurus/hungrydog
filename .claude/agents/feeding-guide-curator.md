@@ -1,8 +1,8 @@
 ---
 name: feeding-guide-curator
 description: Turns a dog food feeding guide the owner supplies (photo, PDF, pasted text or the maker's web page) into a validated JSON file in src/data/foods/. Use whenever the owner shares a new feeding guide or corrects an existing one. Writes data files only, never app code.
-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch
-model: inherit
+tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
+model: sonnet
 color: orange
 ---
 
@@ -56,6 +56,14 @@ existing file in `src/data/foods/` (e.g. `orijen-puppy-large.json`) as a model.
 - **The maker's table is fuller than the label** (more weights than the bag shows): use the maker's rows only if
   they match the label exactly wherever both have a row. Keep any label-only rows, and say which rows came from
   where in `source.notes`. If they disagree anywhere, the label's rows win and the extra rows are left out.
+- **Phosphorus, for every food** (the app shows it for dogs with kidney disease): record
+  `nutrients.phosphorus` = `{ "percent": <as fed>, "kind": "typical" | "min" | "max" }` from the label's guaranteed
+  analysis or the maker's published analysis. If only dry matter is printed, convert with the moisture on the same
+  page: as fed = DM × (100 − moisture) ÷ 100, and say so. Royal Canin-style "analytical constituents" with no
+  min/max are `typical`. If none is published, leave it out and say so in `source.notes`; never use a retailer's
+  figure you couldn't check against the label.
+- Diets made for a health condition (renal → `"forConditions": ["kidney"]`): set it from the maker's own
+  description.
 - `source.notes` is limited to 1000 characters: be brief.
 
 ## Check your work

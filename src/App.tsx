@@ -3,10 +3,11 @@ import { Group, NumberRow, Segmented, SelectRow, TipCard } from "./components/Co
 import { FoodPicker } from "./components/FoodPicker";
 import { Result } from "./components/Result";
 import { BREEDS, LIFE_STAGES, findBreed } from "./feeding/breeds";
+import { CONDITIONS, findCondition } from "./feeding/conditions";
 import { customFood, findFood } from "./feeding/foods";
 import { LIMITS, makePlan, type FoodChoice, type Plan } from "./feeding/plan";
-import { ageTip, mealsTip, sizeFromWeight } from "./feeding/tips";
-import { parseNumber, slotCustomInput, useForm, type FoodSlot } from "./state";
+import { ageTip, conditionTip, mealsTip, sizeFromWeight } from "./feeding/tips";
+import { MIN_LIMIT_MG, parseMg, parseNumber, slotCustomInput, useForm, type FoodSlot } from "./state";
 
 function slotFood(slot: FoodSlot, n: number) {
   return slot.mode === "custom" ? customFood(slotCustomInput(slot), n) : findFood(slot.foodId);
@@ -20,6 +21,9 @@ export default function App() {
   const currentKg = parseNumber(form.current);
   const targetKg = parseNumber(form.target);
   const breed = findBreed(form.breed);
+  const condition = findCondition(form.condition);
+  const phosphorusLimit = parseMg(form.phosphorusLimit);
+  const limitBad = form.phosphorusLimit !== "" && !(phosphorusLimit >= MIN_LIMIT_MG);
   const food1 = slotFood(form.foods[0], 1);
   const food2 = form.mix ? slotFood(form.foods[1], 2) : undefined;
   const customBad = (i: 0 | 1) => form.foods[i].mode === "custom" && form.foods[i].custom.energy !== "" && !slotFood(form.foods[i], i + 1);
@@ -27,6 +31,13 @@ export default function App() {
   // Size for the tips: the breed's, or judged from the adult (target / expected adult) weight.
   const size = breed?.sizeClass ?? (weightOk(targetKg) ? sizeFromWeight(targetKg) : undefined);
   const meals = mealsTip(form.stage, size, form.meals, breed?.name);
+  const chosenFoods = [food1, food2].filter((f) => f !== undefined);
+  const health =
+    condition &&
+    conditionTip(
+      condition.id,
+      chosenFoods.length ? chosenFoods.some((f) => f.forConditions?.includes(condition.id)) : undefined,
+    );
   const age = ageTip(form.stage, size, LIFE_STAGES, breed, weightOk(targetKg) ? targetKg : undefined);
 
   const { plan, empty } = useMemo((): { plan: Plan | null; empty: string | null } => {
@@ -75,7 +86,15 @@ export default function App() {
           <div className="inputs">
             <Group
               title="Your Dog"
-              footer={puppy ? "Not sure of the adult weight? Your vet or breeder can estimate it." : "Target weight: the same as now if they're in good shape."}
+              footer={
+                <>
+                  {puppy ? "Not sure of the adult weight? Your vet or breeder can estimate it." : "Target weight: the same as now if they're in good shape."}
+                  {condition?.nutrients.includes("phosphorus") &&
+                    (limitBad
+                      ? " That phosphorus limit looks too small: enter it in mg a day (1 g = 1,000 mg)."
+                      : " Phosphorus limit: only if your vet has given you one, in mg a day.")}
+                </>
+              }
             >
               <Segmented
                 label="Age"
@@ -97,6 +116,24 @@ export default function App() {
                     </option>
                   ))}
                 </SelectRow>
+              )}
+              <SelectRow label="Health" value={form.condition} onChange={(condition) => update((f) => ({ ...f, condition }))}>
+                <option value="">None known</option>
+                {CONDITIONS.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </SelectRow>
+              {condition?.nutrients.includes("phosphorus") && (
+                <NumberRow
+                  label="Phosphorus limit"
+                  value={form.phosphorusLimit}
+                  onChange={(phosphorusLimit) => update((f) => ({ ...f, phosphorusLimit }))}
+                  unit="mg/day"
+                  placeholder="Optional"
+                  invalid={limitBad}
+                />
               )}
               <NumberRow
                 label={puppy ? "Weight now" : "Current weight"}
@@ -188,8 +225,15 @@ export default function App() {
           </div>
 
           <div className="output">
-            <Result plan={plan} meals={form.meals} empty={empty} />
+            <Result
+              plan={plan}
+              meals={form.meals}
+              empty={empty}
+              condition={condition}
+              limits={{ phosphorus: limitBad || !(phosphorusLimit > 0) ? undefined : phosphorusLimit }}
+            />
             <div className="tips">
+              {health && <TipCard tip={health} icon="heart" />}
               <TipCard tip={meals} />
               {age && <TipCard tip={age} icon="calendar" />}
             </div>

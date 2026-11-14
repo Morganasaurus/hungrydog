@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ageTip, mealsTip, pluralBreed, sizeFromWeight } from "./tips";
+import { ageTip, conditionTip, mealsTip, pluralBreed, sizeFromWeight } from "./tips";
 import type { Breed, LifeStages } from "./types";
 
 // Test fixtures only: the real figures live in src/data and are checked by data.test.ts.
@@ -87,4 +87,16 @@ describe("breed plurals", () => {
     expect(pluralBreed("Shih Tzu")).toBe("Shih Tzus");
     expect(pluralBreed("Cockapoo (Spoodle)")).toBe("Cockapoos (Spoodle)");
   });
+});
+
+describe("kidney disease tip", () => {
+  it("leads with phosphorus and cites IRIS and Tufts", () => {
+    const t = conditionTip("kidney", true);
+    expect(t.lines[0]).toMatch(/phosphorus/);
+    expect(t.sources.map((s) => s.url).join(" ")).toMatch(/iris-kidney\.com.*tufts\.edu/);
+    expect(t.caution).toBeUndefined();
+  });
+  it("cautions when none of the chosen foods is a kidney diet", () =>
+    expect(conditionTip("kidney", false).caution).toMatch(/None of the foods chosen is listed here as a kidney diet/));
+  it("says nothing about foods before one is chosen", () => expect(conditionTip("kidney", undefined).caution).toBeUndefined());
 });

@@ -3,6 +3,9 @@
 
 import type { Breed, Food, LifeStages } from "./types";
 
+const NUTRIENTS = ["phosphorus"] as const;
+const CONDITION_IDS = ["kidney"] as const;
+
 const ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -92,6 +95,20 @@ export function validateFood(raw: unknown): string[] {
     }
   }
 
+  if (f.nutrients !== undefined) {
+    if (!isObj(f.nutrients)) e.push("nutrients must be an object");
+    else
+      for (const [k, v] of Object.entries(f.nutrients)) {
+        if (!(NUTRIENTS as readonly string[]).includes(k)) e.push(`nutrients.${k} isn't a nutrient we track`);
+        // Phosphorus in dog food runs from about 0.1% (wet, as fed) to about 2% (dry); above 5% is a slip.
+        else if (!isObj(v) || !isNum(v.percent) || v.percent <= 0 || v.percent > 5) e.push(`nutrients.${k}.percent must be 0–5`);
+        else if (v.kind !== "typical" && v.kind !== "min" && v.kind !== "max") e.push(`nutrients.${k}.kind must be typical, min or max`);
+      }
+  }
+  if (f.forConditions !== undefined) {
+    if (!Array.isArray(f.forConditions) || !f.forConditions.every((c) => (CONDITION_IDS as readonly string[]).includes(c as string)))
+      e.push("forConditions must list known conditions");
+  }
   if (f.demo !== undefined && f.demo !== true) e.push("demo must be true or absent");
   if (f.vetDiet !== undefined && f.vetDiet !== true) e.push("vetDiet must be true or absent");
   if (f.custom !== undefined) e.push("custom is only for foods typed in by the owner, not data files");

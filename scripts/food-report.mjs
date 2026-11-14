@@ -46,6 +46,13 @@ function report(food) {
       `Energy: ${e ? `${e} kcal/100 g (${Math.round(e * 10)} kcal/kg)` : "not recorded"}`,
       food.package ? `Package: ${food.package.label} ${food.package.grams} g` : null,
       `Covers: ${[food.adultGuide && "adult", food.puppyGuide && "puppy"].filter(Boolean).join(" + ") || "calories only"}`,
+      (() => {
+        const p = food.nutrients?.phosphorus;
+        if (!p) return "Phosphorus: not recorded";
+        const perK = e ? ` = ${((p.percent * 1000) / e).toFixed(2)} g/1000 kcal` : "";
+        return `Phosphorus: ${p.percent}% as fed (${p.kind})${perK}`;
+      })(),
+      food.forConditions?.length ? `For: ${food.forConditions.join(", ")}` : null,
       `Source: ${food.source.kind}, added ${food.source.addedOn}, ${food.source.links?.length ?? 0} link(s)`,
     ]
       .filter(Boolean)

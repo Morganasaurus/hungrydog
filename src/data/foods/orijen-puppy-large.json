@@ -4,6 +4,7 @@
   "name": "Puppy Large",
   "type": "dry",
   "energy": { "kcalPer100g": 376.0 },
+  "nutrients": { "phosphorus": { "percent": 1.0, "kind": "min" } },
   "puppyGuide": {
     "transitionTo": "ORIJEN Original Dog Food",
     "columns": [
@@ -87,7 +88,7 @@
   "source": {
     "kind": "label",
     "addedOn": "2026-11-14",
-    "notes": "Feeding table, cup size (8 fl oz cup = 120 g), transition food and size statement: feeding guide image supplied by the owner (no energy figure on it). Energy: ORIJEN Australia product page (AAFCO version), 'Metabolizable energy is 3760 kcal/kg (451 kcal per 8oz. cup)', stored as 376.0 kcal/100 g; the same 3760 kcal/kg appears on the AU FEDIAF page and both US pages. The owner's table matches the maker's AU (and identical US) AAFCO feeding calculator except 60 kg adult / 30 kg puppy: maker 485 g, owner's guide 480 g (kept, owner's bag wins). The maker's FEDIAF pages show a different table (e.g. 320, 630, 840 g). The label's 30 kg column is headed 'medium-large breeds'; 40-50 kg 'large', 60-80 kg 'giant'. food:report flags the 5 kg row (40-80 kg columns) and the 10 kg row (80 kg column) at 51-54% of the NRC estimate: that is what the label and the maker print (160 g for every 5 kg puppy), not a transcription error.",
+    "notes": "Feeding table, cup size (8 fl oz cup = 120 g), transition food and size statement: feeding guide image supplied by the owner (no energy figure on it). Energy: ORIJEN Australia product page (AAFCO version), 'Metabolizable energy is 3760 kcal/kg (451 kcal per 8oz. cup)', stored as 376.0 kcal/100 g; the same 3760 kcal/kg appears on the AU FEDIAF page and both US pages. The owner's table matches the maker's AU (and identical US) AAFCO feeding calculator except 60 kg adult / 30 kg puppy: maker 485 g, owner's guide 480 g (kept, owner's bag wins). The maker's FEDIAF pages show a different table (e.g. 320, 630, 840 g). The label's 30 kg column is headed 'medium-large breeds'; 40-50 kg 'large', 60-80 kg 'giant'. food:report flags the 5 kg row (40-80 kg columns) and the 10 kg row (80 kg column) at 51-54% of the NRC estimate: that is what the label and the maker print (160 g for every 5 kg puppy), not a transcription error. Phosphorus: AU AAFCO page, '(min.) 1%'.",
     "links": [
       { "title": "ORIJEN Australia: Puppy Large Breed Dog Food (AAFCO version)", "url": "https://apac.orijenpetfoods.com/en-AU/ap-ori-ds-puppylrg.html", "accessed": "2026-11-14" },
       { "title": "ORIJEN Australia: Puppy Large feeding calculator data", "url": "https://apac.orijenpetfoods.com/on/demandware.store/Sites-orijen_ap-Site/en_AU/Product-FeedingTable?pid=ap-ori-ds-puppylrg", "accessed": "2026-11-14" },
