@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { ENERGY_UNITS, type Activity, type EnergyUnit } from "./feeding/energy";
 import { BREEDS } from "./feeding/breeds";
+import { CONDITIONS } from "./feeding/conditions";
 import { CUSTOM_NAME_MAX, FOODS, brandsOf, findFood, foodForBrand, type CustomFoodInput } from "./feeding/foods";
 import type { Stage } from "./feeding/plan";
 import type { FoodType } from "./feeding/types";
@@ -23,6 +24,10 @@ export interface Form {
   stage: Stage;
   /** Breed id, or "" for not set. */
   breed: string;
+  /** Health condition id (conditions.ts), or "" for none known. */
+  condition: string;
+  /** Daily phosphorus limit from the owner's vet, mg (text as typed), or "". */
+  phosphorusLimit: string;
   current: string;
   target: string;
   activity: Activity;
@@ -46,6 +51,8 @@ const emptySlot = (type: FoodType): FoodSlot => {
 export const DEFAULT_FORM: Form = {
   stage: "adult",
   breed: "",
+  condition: "",
+  phosphorusLimit: "",
   current: "",
   target: "",
   activity: "typical",
@@ -96,6 +103,8 @@ function load(): Form {
     return {
       stage: oneOf(v.stage, ["puppy", "adult", "senior"] as const, DEFAULT_FORM.stage),
       breed: BREEDS.some((b) => b.id === v.breed) ? (v.breed as string) : "",
+      condition: CONDITIONS.some((c) => c.id === v.condition) ? (v.condition as string) : "",
+      phosphorusLimit: str(v.phosphorusLimit, ""),
       current: str(v.current, ""),
       target: str(v.target, ""),
       activity: oneOf(v.activity, ["low", "typical", "high"] as const, DEFAULT_FORM.activity),
@@ -120,6 +129,14 @@ export function useForm(): [Form, (update: (f: Form) => Form) => void, () => voi
   }, [form]);
   return [form, (update) => setForm((f) => update(f)), () => setForm(DEFAULT_FORM)];
 }
+
+/** A daily limit in mg: "1,000" means a thousand here (no decimals in mg), so commas are dropped. */
+export function parseMg(text: string): number {
+  return parseNumber(text.replace(/,/g, ""));
+}
+
+/** Phosphorus limits below this are almost certainly grams typed as mg (a dog's day is hundreds of mg or more). */
+export const MIN_LIMIT_MG = 50;
 
 /** Parses a weight or number typed by a person: accepts "12,5" as well as "12.5". */
 export function parseNumber(text: string): number {

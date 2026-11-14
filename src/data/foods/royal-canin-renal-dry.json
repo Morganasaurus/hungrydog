@@ -94,7 +94,7 @@
   "source": {
     "kind": "label",
     "addedOn": "2026-11-14",
-    "notes": "Owner's bag (Australia), feeding guide photo, checked against Royal Canin Australia's Renal page. Energy: label ME 3984 kcal/kg = 398.4 kcal/100 g; the AU page shows none (its hidden data has a 4017 kcal/kg NRC 'reference energy', not used). adultGuide is the NORMAL weight-condition column, dry only: 5 kg (92 g) from the label; 2–80 kg from the AU page, which matches the label exactly at 10–40 kg (Thin and Overweight columns too). HungryDog feeds for target weight, so Normal read at the target stands in for Thin and Overweight. Label-only mix with Renal Loaf 410 g can (dry g + cans; 5, 10, 20, 30, 40 kg): THIN 62+1/4, 91+1/2, 211+1/2, 231+1, 328+1; NORMAL 50+1/4, 70+1/2, 176+1/2, 183+1, 268+1; OVERWEIGHT 37+1/4, 49+1/2, 140+1/2, 135+1, 208+1. Cans shown in grams in the label note (1/4 can = 102.5 g, shown as 103 g).",
+    "notes": "Owner's bag (Australia), feeding guide photo, checked against Royal Canin Australia's Renal page. Energy: label ME 3984 kcal/kg = 398.4 kcal/100 g; the AU page shows none (its hidden data has a 4017 kcal/kg NRC 'reference energy', not used). adultGuide is the NORMAL weight-condition column, dry only: 5 kg (92 g) from the label; 2–80 kg from the AU page, which matches the label exactly at 10–40 kg (Thin and Overweight columns too). HungryDog feeds for target weight, so Normal read at the target stands in for Thin and Overweight. Label-only mix with Renal Loaf 410 g can (dry g + cans; 5, 10, 20, 30, 40 kg): THIN 62+1/4, 91+1/2, 211+1/2, 231+1, 328+1; NORMAL 50+1/4, 70+1/2, 176+1/2, 183+1, 268+1; OVERWEIGHT 37+1/4, 49+1/2, 140+1/2, 135+1, 208+1. Cans shown in grams in the label note (1/4 can = 102.5 g, shown as 103 g). Phosphorus 0.2%: AU page's analytical constituents (no min/max given; read as typical, as fed).",
     "links": [
       {
         "title": "Renal – Royal Canin Australia (dry)",
@@ -102,5 +102,14 @@
         "accessed": "2026-11-14"
       }
     ]
-  }
+  },
+  "nutrients": {
+    "phosphorus": {
+      "percent": 0.2,
+      "kind": "typical"
+    }
+  },
+  "forConditions": [
+    "kidney"
+  ]
 }

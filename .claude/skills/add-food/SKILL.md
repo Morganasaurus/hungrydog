@@ -22,6 +22,8 @@ into the public repo.
   - adult table by dog weight (single amounts or ranges, or weight bands)
   - puppy table by puppy weight × expected adult weight
   - an energy figure
+  - phosphorus from the guaranteed analysis (shown for dogs with kidney disease); ask the owner to include the
+    analysis panel in the photo
 
   **Not supported yet:** puppy tables by age, cups-only tables, separate pregnancy, nursing or senior tables. For
   those, tell the owner, and either store what fits plus `labelNotes`, or plan a schema change. A schema change
@@ -31,7 +33,8 @@ into the public repo.
 ## 2. Research (curator)
 
 Run the `feeding-guide-curator` agent (from the Homelab folder, use a general-purpose agent pointed at
-`.claude/agents/feeding-guide-curator.md`). Give it the product, the country, any guide text or file path, and what
+`.claude/agents/feeding-guide-curator.md`, with `model: "sonnet"` to match the agent). Run it in the background
+while you do reading A yourself. Give it the product, the country, any guide text or file path, and what
 to look for. It searches the maker's own pages for:
 - the energy figure
 - the official feeding table

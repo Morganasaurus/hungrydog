@@ -105,7 +105,7 @@ export function SelectRow(props: { label: string; value: string; onChange: (v: s
 }
 
 /** A TipKit-style card: icon, bold title, a few short lines, sources. */
-export function TipCard({ tip, icon = "lightbulb" }: { tip: Tip; icon?: "lightbulb" | "calendar" }) {
+export function TipCard({ tip, icon = "lightbulb" }: { tip: Tip; icon?: "lightbulb" | "calendar" | "heart" }) {
   return (
     <aside className="tip" aria-label={tip.title}>
       <span className={`tip-icon ${icon}`} aria-hidden="true" />

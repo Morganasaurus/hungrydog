@@ -1,4 +1,7 @@
+import { NUTRIENT_NAME, type Condition } from "../feeding/conditions";
+import { nutrientSummary, overLimit } from "../feeding/nutrients";
 import type { Note, Plan, PlanItem } from "../feeding/plan";
+import type { NutrientId } from "../feeding/types";
 
 const FRACTIONS: Record<number, string> = { 0.25: "¼", 0.5: "½", 0.75: "¾" };
 
@@ -41,6 +44,45 @@ function Amount({ item, meals, mixed }: { item: PlanItem; meals: number; mixed: 
   );
 }
 
+/** A nutrient that matters for the dog's condition: the day's total, per 1,000 kcal, and the vet's limit. */
+function NutrientLine({ plan, id, limitMg }: { plan: Plan; id: NutrientId; limitMg?: number }) {
+  const s = nutrientSummary(plan, id);
+  if (!s) return null;
+  const name = NUTRIENT_NAME[id];
+  if (s.mgPerDay === undefined)
+    return (
+      <p className="nutrient">
+        <strong>{name}:</strong> not known for {s.missing.join(" and ")}, so there's no daily total.
+      </p>
+    );
+  const about = s.atLeast && !s.atMost ? "at least" : s.atMost && !s.atLeast ? "up to" : "about";
+  const over = overLimit(s, limitMg ?? NaN);
+  const notes: Note[] = [];
+  if (s.atLeast && s.atMost)
+    notes.push({ level: "info", text: `Some ${name.toLowerCase()} figures are minimums and some maximums, so this total is rough.` });
+  if (over)
+    notes.push({
+      level: "warn",
+      text: `${s.atMost && !s.atLeast ? "That may be over" : "That's over"} your vet's limit of ${limitMg!.toLocaleString()} mg a day. Check with your vet before changing foods or amounts.`,
+    });
+  else if (over === false)
+    notes.push({
+      level: "info",
+      text: s.atLeast
+        ? `Within your vet's limit of ${limitMg!.toLocaleString()} mg a day on these figures, but a label minimum means the real amount may be higher.`
+        : `Within your vet's limit of ${limitMg!.toLocaleString()} mg a day.`,
+    });
+  return (
+    <>
+      <p className="nutrient">
+        <strong>{name}:</strong> {about} {s.mgPerDay.toLocaleString()} mg a day
+        {s.gPer1000kcal !== undefined && ` · ${s.gPer1000kcal.toFixed(2)} g per 1,000 kcal`}
+      </p>
+      <Notes notes={notes} />
+    </>
+  );
+}
+
 function Notes({ notes }: { notes: Note[] }) {
   if (!notes.length) return null;
   return (
@@ -54,7 +96,21 @@ function Notes({ notes }: { notes: Note[] }) {
   );
 }
 
-export function Result({ plan, meals, empty }: { plan: Plan | null; meals: number; empty: string | null }) {
+export function Result({
+  plan,
+  meals,
+  empty,
+  condition,
+  limits,
+}: {
+  plan: Plan | null;
+  meals: number;
+  empty: string | null;
+  /** The dog's health condition, if any: shows its nutrients. */
+  condition?: Condition;
+  /** Daily limits from the owner's vet, mg. */
+  limits?: Partial<Record<NutrientId, number>>;
+}) {
   if (empty || !plan) {
     return (
       <section className="summary placeholder" aria-live="polite">
@@ -84,6 +140,9 @@ export function Result({ plan, meals, empty }: { plan: Plan | null; meals: numbe
         <Amount key={i.food.id} item={i} meals={meals} mixed={mixed} />
       ))}
       {plan.totalKcal !== undefined && <p className="kcal">About {plan.totalKcal.toLocaleString()} kcal a day in total</p>}
+      {condition?.nutrients.map((id) => (
+        <NutrientLine key={id} plan={plan} id={id} limitMg={limits?.[id]} />
+      ))}
       <Notes notes={warns} />
       <Notes notes={infos} />
 
