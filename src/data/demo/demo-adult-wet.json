@@ -1,0 +1,16 @@
+{
+  "id": "demo-adult-wet",
+  "brand": "Sample",
+  "name": "Adult Wet (made-up data)",
+  "type": "wet",
+  "energy": { "kcalPer100g": 90 },
+  "package": { "label": "can", "grams": 400 },
+  "adultGuide": [
+    { "weightKg": 5, "gramsLow": 415 },
+    { "weightKg": 10, "gramsLow": 700 },
+    { "weightKg": 20, "gramsLow": 1180 },
+    { "weightKg": 30, "gramsLow": 1600 }
+  ],
+  "source": { "kind": "label", "addedOn": "2026-11-14", "notes": "Invented for development only." },
+  "demo": true
+}

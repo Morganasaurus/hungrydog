@@ -1,0 +1,99 @@
+{
+  "id": "orijen-puppy-large",
+  "brand": "ORIJEN",
+  "name": "Puppy Large",
+  "type": "dry",
+  "energy": { "kcalPer100g": 376.0 },
+  "puppyGuide": {
+    "transitionTo": "ORIJEN Original Dog Food",
+    "columns": [
+      {
+        "adultKg": 30,
+        "points": [
+          { "weightKg": 5, "grams": 160 },
+          { "weightKg": 10, "grams": 270 },
+          { "weightKg": 20, "grams": 360 },
+          { "weightKg": 30, "grams": 300, "transition": true }
+        ]
+      },
+      {
+        "adultKg": 40,
+        "points": [
+          { "weightKg": 5, "grams": 160 },
+          { "weightKg": 10, "grams": 270 },
+          { "weightKg": 20, "grams": 360 },
+          { "weightKg": 30, "grams": 480 },
+          { "weightKg": 40, "grams": 390, "transition": true }
+        ]
+      },
+      {
+        "adultKg": 50,
+        "points": [
+          { "weightKg": 5, "grams": 160 },
+          { "weightKg": 10, "grams": 270 },
+          { "weightKg": 20, "grams": 450 },
+          { "weightKg": 30, "grams": 480 },
+          { "weightKg": 40, "grams": 450 },
+          { "weightKg": 50, "grams": 450, "transition": true }
+        ]
+      },
+      {
+        "adultKg": 60,
+        "points": [
+          { "weightKg": 5, "grams": 160 },
+          { "weightKg": 10, "grams": 270 },
+          { "weightKg": 20, "grams": 450 },
+          { "weightKg": 30, "grams": 480 },
+          { "weightKg": 40, "grams": 600 },
+          { "weightKg": 50, "grams": 540 },
+          { "weightKg": 60, "grams": 520, "transition": true }
+        ]
+      },
+      {
+        "adultKg": 70,
+        "points": [
+          { "weightKg": 5, "grams": 160 },
+          { "weightKg": 10, "grams": 270 },
+          { "weightKg": 20, "grams": 450 },
+          { "weightKg": 30, "grams": 615 },
+          { "weightKg": 40, "grams": 615 },
+          { "weightKg": 50, "grams": 720 },
+          { "weightKg": 60, "grams": 615 },
+          { "weightKg": 70, "grams": 570, "transition": true }
+        ]
+      },
+      {
+        "adultKg": 80,
+        "points": [
+          { "weightKg": 5, "grams": 160 },
+          { "weightKg": 10, "grams": 270 },
+          { "weightKg": 20, "grams": 450 },
+          { "weightKg": 30, "grams": 615 },
+          { "weightKg": 40, "grams": 615 },
+          { "weightKg": 50, "grams": 720 },
+          { "weightKg": 60, "grams": 825 },
+          { "weightKg": 70, "grams": 690 },
+          { "weightKg": 80, "grams": 640, "transition": true }
+        ]
+      }
+    ]
+  },
+  "labelNotes": [
+    "Feed twice daily and provide plenty of fresh, clean water.",
+    "Use the chart as a guide: monitor weight and adjust portions as needed.",
+    "Pregnant dogs: increase by 25% to 50% of the adult amount. Nursing dogs: feed free choice.",
+    "Made for puppies of large breeds (adult weight about 32 kg or more)."
+  ],
+  "source": {
+    "kind": "label",
+    "addedOn": "2026-11-14",
+    "notes": "Feeding table, cup size (8 fl oz cup = 120 g), transition food and size statement: feeding guide image supplied by the owner (no energy figure on it). Energy: ORIJEN Australia product page (AAFCO version), 'Metabolizable energy is 3760 kcal/kg (451 kcal per 8oz. cup)', stored as 376.0 kcal/100 g; the same 3760 kcal/kg appears on the AU FEDIAF page and both US pages. The owner's table matches the maker's AU (and identical US) AAFCO feeding calculator except 60 kg adult / 30 kg puppy: maker 485 g, owner's guide 480 g (kept, owner's bag wins). The maker's FEDIAF pages show a different table (e.g. 320, 630, 840 g). The label's 30 kg column is headed 'medium-large breeds'; 40-50 kg 'large', 60-80 kg 'giant'. food:report flags the 5 kg row (40-80 kg columns) and the 10 kg row (80 kg column) at 51-54% of the NRC estimate: that is what the label and the maker print (160 g for every 5 kg puppy), not a transcription error.",
+    "links": [
+      { "title": "ORIJEN Australia: Puppy Large Breed Dog Food (AAFCO version)", "url": "https://apac.orijenpetfoods.com/en-AU/ap-ori-ds-puppylrg.html", "accessed": "2026-11-14" },
+      { "title": "ORIJEN Australia: Puppy Large feeding calculator data", "url": "https://apac.orijenpetfoods.com/on/demandware.store/Sites-orijen_ap-Site/en_AU/Product-FeedingTable?pid=ap-ori-ds-puppylrg", "accessed": "2026-11-14" },
+      { "title": "ORIJEN Australia: Puppy Large (FEDIAF version)", "url": "https://apac.orijenpetfoods.com/en-AU/ap-ori-ns-puppylrg.html", "accessed": "2026-11-14" },
+      { "title": "ORIJEN US: Puppy Large Dry Dog Food", "url": "https://www.orijenpetfoods.com/en-US/dogs/dog-food/puppy-large/ds-ori-puppylrg.html", "accessed": "2026-11-14" },
+      { "title": "ORIJEN US: Puppy Large Dry Dog Food (FEDIAF version)", "url": "https://www.orijenpetfoods.com/en-US/dogs/dog-food/puppy-large/ns-ori-puppylrg.html", "accessed": "2026-11-14" }
+    ]
+  }
+}

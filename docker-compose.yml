@@ -1,0 +1,24 @@
+services:
+  hungrydog:
+    image: ghcr.io/morganasaurus/hungrydog:latest
+    container_name: hungrydog
+    restart: unless-stopped
+    ports:
+      - "8097:8080"
+    environment:
+      TZ: Australia/Sydney
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 64m
+    pids_limit: 50
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

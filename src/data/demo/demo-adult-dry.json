@@ -1,0 +1,16 @@
+{
+  "id": "demo-adult-dry",
+  "brand": "Sample",
+  "name": "Adult Dry (made-up data)",
+  "type": "dry",
+  "energy": { "kcalPer100g": 380 },
+  "adultGuide": [
+    { "weightKg": 5, "gramsLow": 90, "gramsHigh": 110 },
+    { "weightKg": 10, "gramsLow": 150, "gramsHigh": 180 },
+    { "weightKg": 20, "gramsLow": 255, "gramsHigh": 305 },
+    { "weightKg": 30, "gramsLow": 345, "gramsHigh": 415 },
+    { "weightKg": 40, "gramsLow": 425, "gramsHigh": 515 }
+  ],
+  "source": { "kind": "label", "addedOn": "2026-11-14", "notes": "Invented for development only." },
+  "demo": true
+}
