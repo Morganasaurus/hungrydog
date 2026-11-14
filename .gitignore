@@ -7,3 +7,6 @@ coverage/
 src/_probe*
 *.tsbuildinfo
 .env*
+
+# Claude Code workspace settings (agents and skills live in the owner's workspace, not this repo)
+.claude/

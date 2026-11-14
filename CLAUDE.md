@@ -26,10 +26,10 @@ with defaults, never rename the key, and treat saved data as untrusted).
   - `conditions.ts`: health conditions for the Health picker and the nutrients each one shows.
   - `nutrients.ts`: daily nutrient totals for a plan (phosphorus: mg a day, g per 1,000 kcal) and the vet-limit check.
 - `src/data/foods/*.json`: **the food database**, one file per product, file name = `id`. Added progressively from
-  guides the owner supplies (use the `add-food` skill).
+  guides the owner supplies (see "Changing food data").
 - `src/data/demo/*.json`: made-up foods for development (`"demo": true`). Only loaded when `import.meta.env.DEV`, so
   they never ship; `npm run build` then `grep -l made-up dist/assets/*.js` should find nothing.
-- `src/data/breeds.json`: breed weights, life spans and size classes, with sources (use the `breed-researcher` agent).
+- `src/data/breeds.json`: breed weights, life spans and size classes, with sources (vet or kennel-club pages only).
   Powers the optional Breed picker and the age tip.
 - `src/data/life-stages.json`: vet guidance by size class: when dogs finish growing, senior age, and the AAHA
   "senior = last 25% of life span" rule.
@@ -118,43 +118,14 @@ Before calling UI work done: `npm test`, `npm run build`, then check in the brow
 **744×1133** and **1133×744** (iPad mini) and **1440×900**, light and dark. Touch targets at least 44px. Check the
 console for errors. The user may be clicking in the browser pane at the same time, so use a separate tab for checks.
 
-## Agents (`.claude/agents/`)
+## Changing food data
 
-The main session orchestrates; agents do focused jobs and report back. Models are matched to the job: web research
-and checking against a checklist run on **sonnet** (cheaper, quick); anything where a subtle mistake reaches owners
-(the feeding maths, security) runs on the main session's model (**inherit**).
-
-- `feeding-guide-curator` (sonnet): researches a food on the maker's site and turns a guide into a
-  `src/data/foods/` file. Writes data only. Accuracy comes from the process (two readings, `--diff`, CI, the
-  owner's review), not the model. Images only in the chat can't reach agents: the main session reads those itself.
-- `breed-researcher` (sonnet): adds sourced breed weight ranges to `src/data/breeds.json`. Writes data only.
-- `nutrition-math-reviewer` (inherit): use after changing `src/feeding/` or feeding-advice wording. Read-only.
-- `responsive-ui-reviewer` (sonnet): use after visible UI changes; checks phone, tablet and desktop. Read-only.
-- `security-reviewer` (inherit): use after changing `nginx.conf`, the `Dockerfile`, `docker-compose.yml`, the
-  workflow, dependencies or anything handling user input or storage, and before public releases. Read-only.
-
-These agents only load when the session is opened in this repo. From another folder (e.g. the homelab workspace),
-start a general-purpose agent pointed at the agent's file **with the same model** (`model: "sonnet"` for the
-researchers), otherwise it silently runs on the main session's more expensive model. Work that doesn't need judgement
-belongs in scripts and CI instead (`food:report`, the PR **foods** check), not in an agent.
-
-## Adding foods and releasing
-
-- New or corrected foods go through the `add-food` skill (`.claude/skills/add-food/SKILL.md`): intake, research,
-  two independent readings compared with `npm run food:report -- --diff`, `npm test` + `npm run food:report`, a check in
-  the app, then a branch (`food/<id>`) and a pull request. CI's **foods** check redraws the changed tables on the
-  run's summary page; the owner compares them with the bag, and **merging is their sign-off**.
-- Shipping app changes is the `release` skill: test, build, commit, push, wait for the image build.
-
-### First publish to GitHub (not done yet)
-
-1. Create the repo `Morganasaurus/hungrydog` (public), add it as `origin`, push `main`.
-2. Check the first Actions run passes and the image appears on GHCR. Make the package public, or give the
-   portainer host a read token, as for Fret Wiz.
-3. Protect `main` with a ruleset: require a pull request and the **test** check before merging, with the repo
-   admin allowed to bypass (so the `release` skill can still push app changes directly). Food PRs then can't be
-   merged while tests fail.
-4. Run the `security-reviewer` agent before the first public deploy.
+- Every food comes from the label the owner has, or the maker's own published figures, cited in `source.links` and
+  `source.notes`. Two independent readings of a table are compared with `npm run food:report -- --diff a.json b.json`.
+- `npm test` validates every data file; `npm run food:report -- <id>` redraws its tables and flags implausible values.
+- Each food (or correction) goes on its own branch (`food/<id>`) and pull request. CI's **foods** check redraws the
+  changed tables on the run's summary page so they can be compared with the label before merging.
+- Work that needs no judgement belongs in scripts and CI (`food:report`, the **foods** check).
 
 ## Deployment
 
