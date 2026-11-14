@@ -1,0 +1,22 @@
+{
+  "id": "prime100-spd-slow-cooked-wild-boar-pumpkin",
+  "brand": "PRIME100",
+  "name": "SPD Slow Cooked Wild Boar & Pumpkin",
+  "type": "wet",
+  "energy": { "kcalPer100g": 65 },
+  "package": { "label": "pack", "grams": 354 },
+  "labelNotes": [
+    "For adult dogs. The pack's guide is 450 g per 5 kg of body weight for a typical adult dog; HungryDog works the amount out from calories so it suits bigger dogs too.",
+    "Prime100 says to feed to body condition. Keep fresh water available at all times."
+  ],
+  "source": {
+    "kind": "label",
+    "addedOn": "2026-11-14",
+    "notes": "Owner's pack (Australia), label photo, checked against Prime100's product page. Energy: label and page both give ME 65 kcal/100 g; label adds 230 kcal per pack (354 g x 0.65 = 230). Pack size 354 g from the product name on the maker's page (one size). Feeding guide on the label and page is only a rule: '450 g per 5 kg bodyweight' (label: 'of a typical adult dog'; page adds 'feed to body condition score'). No table at any other weight is published (the maker's site has an interactive calculator only), and the rule read in a straight line gives about 80% of a 1.6 x RER estimate at 5 kg but 134% at 40 kg, so no adultGuide is stored: the app feeds from calories (energy known) and shows the rule as a label note. AAFCO statement: adult dogs, so no puppy guide. Sold over the counter (not a vet diet), though listed as suitable for vet-prescribed elimination diets.",
+    "links": [
+      { "title": "SPD Slow Cooked Wild Boar & Pumpkin 354g | Prime100", "url": "https://prime100.com.au/products/spd-slow-cooked-wildboar-pumpkin-354g", "accessed": "2026-11-14" },
+      { "title": "SPD Slow Cooked Dog Food | Prime100", "url": "https://prime100.com.au/pages/spd-slow-cooked-dog-food", "accessed": "2026-11-14" },
+      { "title": "Dog Food Calculator & Feeding Guide | Prime100", "url": "https://prime100.com.au/pages/feeding-guide", "accessed": "2026-11-14" }
+    ]
+  }
+}

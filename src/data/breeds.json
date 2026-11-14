@@ -1,1 +1,1639 @@
-[]
+[
+  {
+    "id": "american-staffordshire-terrier",
+    "name": "American Staffordshire Terrier",
+    "aliases": [
+      "AmStaff"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        22.7,
+        31.8
+      ],
+      "female": [
+        18.1,
+        27.2
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      15
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: American Staffordshire Terrier",
+        "url": "https://www.akc.org/dog-breeds/american-staffordshire-terrier/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: American Staffordshire Terrier",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/american-staffordshire-terrier",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "australian-cattle-dog",
+    "name": "Australian Cattle Dog",
+    "aliases": [
+      "Cattle Dog",
+      "Blue Heeler",
+      "Red Heeler"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        15.9,
+        22.7
+      ],
+      "female": [
+        15.9,
+        22.7
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      11,
+      14.5
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Australian Cattle Dog",
+        "url": "https://www.akc.org/dog-breeds/australian-cattle-dog/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Australian Cattle Dog",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/australian-cattle-dog",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "australian-kelpie",
+    "name": "Australian Kelpie",
+    "aliases": [
+      "Kelpie"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        15.9,
+        22.7
+      ],
+      "female": [
+        15.9,
+        22.7
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      10,
+      13
+    ],
+    "note": "Weight and life span come from one source (AKC); the FCI standard lists height only.",
+    "sources": [
+      {
+        "title": "AKC breed page: Australian Kelpie",
+        "url": "https://www.akc.org/dog-breeds/australian-kelpie/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "FCI breed standard: Australian Kelpie (height only: 46-51 cm dogs, 43-48 cm bitches)",
+        "url": "https://www.fci.be/Nomenclature/Standards/293g01-en.pdf",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "australian-shepherd",
+    "name": "Australian Shepherd",
+    "aliases": [
+      "Aussie"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        22.7,
+        29.5
+      ],
+      "female": [
+        18.1,
+        24.9
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      12,
+      15
+    ],
+    "note": "Weight and life span come from one source (AKC); the Kennel Club standard lists height only.",
+    "sources": [
+      {
+        "title": "AKC breed page: Australian Shepherd",
+        "url": "https://www.akc.org/dog-breeds/australian-shepherd/",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "beagle",
+    "name": "Beagle",
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        8.2,
+        13.6
+      ],
+      "female": [
+        8.2,
+        13.6
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      11,
+      15
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Beagle",
+        "url": "https://www.akc.org/dog-breeds/beagle/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Beagle",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/beagle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "bernese-mountain-dog",
+    "name": "Bernese Mountain Dog",
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        36.3,
+        52.2
+      ],
+      "female": [
+        31.8,
+        43.1
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      7,
+      10
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Bernese Mountain Dog",
+        "url": "https://www.akc.org/dog-breeds/bernese-mountain-dog/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Bernese Mountain Dog",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/bernese-mountain-dog",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "border-collie",
+    "name": "Border Collie",
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        13.6,
+        24.9
+      ],
+      "female": [
+        13.6,
+        24.9
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      11,
+      14.5
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Border Collie",
+        "url": "https://www.akc.org/dog-breeds/border-collie/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Border Collie",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/border-collie",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "boxer",
+    "name": "Boxer",
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        29.5,
+        36.3
+      ],
+      "female": [
+        22.7,
+        29.5
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      10,
+      12
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Boxer (females about 15 lb lighter)",
+        "url": "https://www.akc.org/dog-breeds/boxer/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "The Kennel Club (UK) breed standard: Boxer (dogs about 30-32 kg, bitches 25-27 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/working/boxer/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Boxer",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/boxer",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "bulldog-british",
+    "name": "Bulldog (British)",
+    "aliases": [
+      "English Bulldog",
+      "British Bulldog"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        22.7,
+        25
+      ],
+      "female": [
+        18.1,
+        23
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      8,
+      10
+    ],
+    "note": "Standards give one weight per sex, so the range is narrow; life span comes from one source (AKC).",
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Bulldog (dogs 25 kg, bitches 23 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/utility/bulldog/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "FCI breed standard: Bulldog (males 25 kg, females 23 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/149g02-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Bulldog (50 lb male, 40 lb female)",
+        "url": "https://www.akc.org/dog-breeds/bulldog/",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "bullmastiff",
+    "name": "Bullmastiff",
+    "sizeClass": "giant",
+    "weightKg": {
+      "male": [
+        50,
+        59
+      ],
+      "female": [
+        41,
+        54.4
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      7.5,
+      9.5
+    ],
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Bullmastiff (dogs 50-59 kg, bitches 41-50 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/working/bullmastiff/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Bullmastiff",
+        "url": "https://www.akc.org/dog-breeds/bullmastiff/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Bullmastiff",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/bullmastiff",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "cavalier-king-charles-spaniel",
+    "name": "Cavalier King Charles Spaniel",
+    "aliases": [
+      "Cavalier",
+      "CKCS"
+    ],
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        5.4,
+        8.2
+      ],
+      "female": [
+        5.4,
+        8.2
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      10.5,
+      14.5
+    ],
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Cavalier King Charles Spaniel (5.4-8.2 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/toy/cavalier-king-charles-spaniel/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "FCI breed standard: Cavalier King Charles Spaniel (5.4-8 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/136g09-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Cavalier King Charles Spaniel",
+        "url": "https://www.akc.org/dog-breeds/cavalier-king-charles-spaniel/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Cavalier King Charles Spaniel",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/cavalier-king-charles-spaniel",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "cavoodle",
+    "name": "Cavoodle",
+    "aliases": [
+      "Cavapoo"
+    ],
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        5,
+        11
+      ],
+      "female": [
+        5,
+        11
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      10,
+      15
+    ],
+    "note": "Sizes vary with the parent breeds; these ranges are typical, not a standard. Toy Poodle parents give smaller dogs than Miniature Poodle parents.",
+    "sources": [
+      {
+        "title": "Wood Green pet explorer: Cavapoo (5-11 kg, 10-15 years)",
+        "url": "https://ask.woodgreen.org.uk/pet-explorer/results/cavapoo",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Petbarn: Cavoodle (5-12 kg, 12-15 years)",
+        "url": "https://www.petbarn.com.au/advice/dog/dog-breeds/cavoodle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "chihuahua",
+    "name": "Chihuahua",
+    "sizeClass": "toy",
+    "weightKg": {
+      "male": [
+        1,
+        3
+      ],
+      "female": [
+        1,
+        3
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      14,
+      17
+    ],
+    "sources": [
+      {
+        "title": "FCI breed standard: Chihuahua (1-3 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/218g09-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "The Kennel Club (UK) breed standard: Chihuahua smooth coat (up to 2.7 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/toy/chihuahua-smooth-coat/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Chihuahua",
+        "url": "https://www.akc.org/dog-breeds/chihuahua/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Chihuahua",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/chihuahua",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "cockapoo-spoodle",
+    "name": "Cockapoo (Spoodle)",
+    "aliases": [
+      "Spoodle",
+      "Cockapoo"
+    ],
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        5,
+        14
+      ],
+      "female": [
+        5,
+        14
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      15
+    ],
+    "note": "Sizes vary with the parent breeds; these ranges are typical, not a standard. Standard Poodle crosses can be heavier.",
+    "sources": [
+      {
+        "title": "Petbarn: Spoodle (5-14 kg, 12-15 years)",
+        "url": "https://www.petbarn.com.au/advice/dog/dog-breeds/spoodle",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Cockapoo (miniature 12-19 lb, maxi 20-65 lb; 12-15 years)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/cockapoo",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Wood Green pet explorer: Cockapoo (11-15 kg, 12-15 years)",
+        "url": "https://ask.woodgreen.org.uk/pet-explorer/results/cockapoo",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "cocker-spaniel-english",
+    "name": "Cocker Spaniel (English)",
+    "aliases": [
+      "English Cocker Spaniel"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        12.7,
+        15.4
+      ],
+      "female": [
+        11.8,
+        14.5
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      14
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: English Cocker Spaniel",
+        "url": "https://www.akc.org/dog-breeds/english-cocker-spaniel/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: English Cocker Spaniel",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/english-cocker-spaniel",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "dachshund-standard",
+    "name": "Dachshund (standard)",
+    "aliases": [
+      "Sausage Dog",
+      "Standard Dachshund"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        7.3,
+        14.5
+      ],
+      "female": [
+        7.3,
+        14.5
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      15
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Dachshund (standard 16-32 lb)",
+        "url": "https://www.akc.org/dog-breeds/dachshund/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "The Kennel Club (UK) breed standard: Dachshund smooth-haired (ideal 9-12 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/hound/dachshund-smooth-haired/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Dachshund",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/dachshund",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "dobermann",
+    "name": "Dobermann",
+    "aliases": [
+      "Doberman",
+      "Doberman Pinscher"
+    ],
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        34.0,
+        45.4
+      ],
+      "female": [
+        27.2,
+        40.8
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      10,
+      12
+    ],
+    "note": "Life span comes from one source (AKC).",
+    "sources": [
+      {
+        "title": "AKC breed page: Doberman Pinscher",
+        "url": "https://www.akc.org/dog-breeds/doberman-pinscher/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "FCI breed standard: Dobermann (males about 40-45 kg, females about 32-35 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/143g02-en.pdf",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "french-bulldog",
+    "name": "French Bulldog",
+    "aliases": [
+      "Frenchie"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        9,
+        14
+      ],
+      "female": [
+        8,
+        13
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      9.5,
+      11.5
+    ],
+    "sources": [
+      {
+        "title": "FCI breed standard: French Bulldog (males 9-14 kg, females 8-13 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/101g09-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "The Kennel Club (UK) breed standard: French Bulldog (ideal 12.5 kg dogs, 11 kg bitches)",
+        "url": "https://www.royalkennelclub.com/breed-standards/utility/french-bulldog/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: French Bulldog",
+        "url": "https://www.akc.org/dog-breeds/french-bulldog/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: French Bulldog",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/french-bulldog",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "german-shepherd-dog",
+    "name": "German Shepherd Dog",
+    "aliases": [
+      "Alsatian",
+      "German Shepherd",
+      "GSD"
+    ],
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        29.5,
+        40.8
+      ],
+      "female": [
+        22,
+        32
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      9.5,
+      12
+    ],
+    "sources": [
+      {
+        "title": "FCI breed standard: German Shepherd Dog (30-40 kg dogs, 22-32 kg bitches)",
+        "url": "https://www.fci.be/Nomenclature/Standards/166g01-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: German Shepherd Dog",
+        "url": "https://www.akc.org/dog-breeds/german-shepherd-dog/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: German Shepherd",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/german-shepherd",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "golden-retriever",
+    "name": "Golden Retriever",
+    "aliases": [
+      "Golden"
+    ],
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        29.5,
+        34.0
+      ],
+      "female": [
+        24.9,
+        29.5
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      10,
+      12
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Golden Retriever",
+        "url": "https://www.akc.org/dog-breeds/golden-retriever/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Golden Retriever",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/golden-retriever",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "great-dane",
+    "name": "Great Dane",
+    "sizeClass": "giant",
+    "weightKg": {
+      "male": [
+        54,
+        79.4
+      ],
+      "female": [
+        46,
+        63.5
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      7,
+      9.5
+    ],
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Great Dane (minimum 54 kg dogs, 46 kg bitches)",
+        "url": "https://www.royalkennelclub.com/breed-standards/working/great-dane/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Great Dane",
+        "url": "https://www.akc.org/dog-breeds/great-dane/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Great Dane",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/great-dane",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "greyhound",
+    "name": "Greyhound",
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        29.5,
+        31.8
+      ],
+      "female": [
+        27.2,
+        29.5
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      10,
+      13
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Greyhound",
+        "url": "https://www.akc.org/dog-breeds/greyhound/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Greyhound (60-70 lb)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/greyhound",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "groodle-miniature",
+    "name": "Groodle (miniature)",
+    "aliases": [
+      "Goldendoodle (miniature)",
+      "Miniature Groodle"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        7,
+        20
+      ],
+      "female": [
+        7,
+        20
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      9,
+      14.5
+    ],
+    "note": "Sizes vary with the parent breeds; these ranges are typical, not a standard.",
+    "sources": [
+      {
+        "title": "Petbarn: Goldendoodle/Groodle (miniature 35-48 cm, 7-20 kg; 10-15 years)",
+        "url": "https://www.petbarn.com.au/advice/dog/dog-breeds/goldendoodle",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Goldendoodle (8-14 years; mini-poodle crosses typically under 35 lb)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/goldendoodle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "groodle-standard",
+    "name": "Groodle (standard)",
+    "aliases": [
+      "Goldendoodle (standard)",
+      "Standard Groodle"
+    ],
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        23,
+        35
+      ],
+      "female": [
+        23,
+        35
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      9,
+      14.5
+    ],
+    "note": "Sizes vary with the parent breeds; these ranges are typical, not a standard.",
+    "sources": [
+      {
+        "title": "Petbarn: Goldendoodle/Groodle (standard 51-66 cm, 23-35 kg; 10-15 years)",
+        "url": "https://www.petbarn.com.au/advice/dog/dog-breeds/goldendoodle",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Goldendoodle (up to 100 lb overall; 8-14 years)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/goldendoodle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "hungarian-vizsla",
+    "name": "Hungarian Vizsla",
+    "aliases": [
+      "Vizsla"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        20,
+        30
+      ],
+      "female": [
+        20,
+        30
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      11,
+      14
+    ],
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Hungarian Vizsla (20-30 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/gundog/hungarian-vizsla/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Vizsla",
+        "url": "https://www.akc.org/dog-breeds/vizsla/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Vizsla",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/vizsla",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "jack-russell-terrier",
+    "name": "Jack Russell Terrier",
+    "aliases": [
+      "Jack Russell"
+    ],
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        5,
+        7.7
+      ],
+      "female": [
+        5,
+        7.7
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      12.5,
+      14.5
+    ],
+    "sources": [
+      {
+        "title": "FCI breed standard: Jack Russell Terrier (about 1 kg per 5 cm height, 25-30 cm)",
+        "url": "https://www.fci.be/Nomenclature/Standards/345g03-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Jack Russell Terrier (13-17 lb)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/jack-russell-terrier",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Russell Terrier (AKC type, 9-15 lb)",
+        "url": "https://www.akc.org/dog-breeds/russell-terrier/",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "labradoodle-medium",
+    "name": "Labradoodle (medium)",
+    "aliases": [
+      "Australian Labradoodle (medium)"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        13.6,
+        22.7
+      ],
+      "female": [
+        13.6,
+        22.7
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      12,
+      14
+    ],
+    "note": "Sizes vary with the parent breeds; these ranges are typical, not a standard. Medium is about 17-20 in at the shoulder.",
+    "sources": [
+      {
+        "title": "Australian Labradoodle Association of America: breed standard (medium 17-20 in)",
+        "url": "https://www.alaa-labradoodles.com/breed-standard",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet Labradoodle breed guide (medium 30-50 lb; 12-14 years)",
+        "url": "https://www.hillspet.com/dog-breeds/labradoodle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "labradoodle-miniature",
+    "name": "Labradoodle (miniature)",
+    "aliases": [
+      "Australian Labradoodle (miniature)"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        7,
+        13.6
+      ],
+      "female": [
+        7,
+        13.6
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      12,
+      14
+    ],
+    "note": "Sizes vary with the parent breeds; these ranges are typical, not a standard. Miniature is about 14-16 in at the shoulder.",
+    "sources": [
+      {
+        "title": "Australian Labradoodle Association of America: breed standard (miniature 14-16 in; whole breed from 7 kg)",
+        "url": "https://www.alaa-labradoodles.com/breed-standard",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet Labradoodle breed guide (miniature 15-30 lb; 12-14 years)",
+        "url": "https://www.hillspet.com/dog-breeds/labradoodle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "labradoodle-standard",
+    "name": "Labradoodle (standard)",
+    "aliases": [
+      "Australian Labradoodle (standard)"
+    ],
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        22.7,
+        30
+      ],
+      "female": [
+        22.7,
+        30
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      12,
+      14
+    ],
+    "note": "Sizes vary with the parent breeds; these ranges are typical, not a standard. Standard is about 21-24 in at the shoulder.",
+    "sources": [
+      {
+        "title": "Australian Labradoodle Association of America: breed standard (whole breed 7-30 kg; standard 21-24 in)",
+        "url": "https://www.alaa-labradoodles.com/breed-standard",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet Labradoodle breed guide (standard 50-80 lb, 21-24 in; 12-14 years)",
+        "url": "https://www.hillspet.com/dog-breeds/labradoodle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "labrador-retriever",
+    "name": "Labrador Retriever",
+    "aliases": [
+      "Labrador",
+      "Lab"
+    ],
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        29.5,
+        36.3
+      ],
+      "female": [
+        24.9,
+        31.8
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      10.5,
+      12.5
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Labrador Retriever",
+        "url": "https://www.akc.org/dog-breeds/labrador-retriever/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Labrador Retriever",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/labrador-retriever",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "maltese",
+    "name": "Maltese",
+    "sizeClass": "toy",
+    "weightKg": {
+      "male": [
+        3,
+        4
+      ],
+      "female": [
+        3,
+        4
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      14.5
+    ],
+    "sources": [
+      {
+        "title": "FCI breed standard: Maltese (3-4 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/065g09-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Maltese (under 7 lb)",
+        "url": "https://www.akc.org/dog-breeds/maltese/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Maltese",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/maltese",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "miniature-schnauzer",
+    "name": "Miniature Schnauzer",
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        4,
+        9.1
+      ],
+      "female": [
+        4,
+        9.1
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      14.5
+    ],
+    "sources": [
+      {
+        "title": "FCI breed standard: Schnauzer miniature (about 4-8 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/183g02-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Miniature Schnauzer (11-20 lb)",
+        "url": "https://www.akc.org/dog-breeds/miniature-schnauzer/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Miniature Schnauzer",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/miniature-schnauzer",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "pomeranian",
+    "name": "Pomeranian",
+    "sizeClass": "toy",
+    "weightKg": {
+      "male": [
+        1.4,
+        3.2
+      ],
+      "female": [
+        1.4,
+        3.2
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      16
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Pomeranian (3-7 lb)",
+        "url": "https://www.akc.org/dog-breeds/pomeranian/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "The Kennel Club (UK) breed standard: Pomeranian (ideal 1.8-2.5 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/toy/pomeranian/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Pomeranian",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/pomeranian",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "poodle-miniature",
+    "name": "Poodle (miniature)",
+    "aliases": [
+      "Miniature Poodle"
+    ],
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        4.5,
+        6.8
+      ],
+      "female": [
+        4.5,
+        6.8
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      10,
+      18
+    ],
+    "note": "Weight and life span come from one source (AKC).",
+    "sources": [
+      {
+        "title": "AKC breed page: Poodle (Miniature)",
+        "url": "https://www.akc.org/dog-breeds/poodle-miniature/",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "poodle-standard",
+    "name": "Poodle (standard)",
+    "aliases": [
+      "Standard Poodle"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        27.2,
+        31.8
+      ],
+      "female": [
+        18.1,
+        22.7
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      11,
+      16.5
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Poodle (Standard)",
+        "url": "https://www.akc.org/dog-breeds/poodle-standard/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Poodle (standard 40-70 lb)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/poodle",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "poodle-toy",
+    "name": "Poodle (toy)",
+    "aliases": [
+      "Toy Poodle"
+    ],
+    "sizeClass": "toy",
+    "weightKg": {
+      "male": [
+        1.8,
+        2.7
+      ],
+      "female": [
+        1.8,
+        2.7
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      10,
+      18
+    ],
+    "note": "Weight and life span come from one source (AKC).",
+    "sources": [
+      {
+        "title": "AKC breed page: Poodle (Toy)",
+        "url": "https://www.akc.org/dog-breeds/poodle-toy/",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "pug",
+    "name": "Pug",
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        6.3,
+        8.2
+      ],
+      "female": [
+        6.3,
+        8.2
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12.5,
+      15
+    ],
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Pug (ideal 6.3-8.1 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/toy/pug/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "FCI breed standard: Pug (ideal 6.3-8.1 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/253g09-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Pug",
+        "url": "https://www.akc.org/dog-breeds/pug/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Pug",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/pug",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "rhodesian-ridgeback",
+    "name": "Rhodesian Ridgeback",
+    "aliases": [
+      "Ridgeback"
+    ],
+    "sizeClass": "large",
+    "weightKg": {
+      "male": [
+        31.8,
+        38.6
+      ],
+      "female": [
+        31.8,
+        38.6
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      10,
+      12
+    ],
+    "note": "Standards give one weight per sex; the range used is the Hill's 70-85 lb overall range for both sexes.",
+    "sources": [
+      {
+        "title": "AKC breed page: Rhodesian Ridgeback (85 lb male, 70 lb female)",
+        "url": "https://www.akc.org/dog-breeds/rhodesian-ridgeback/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "FCI breed standard: Rhodesian Ridgeback (36.5 kg male, 32 kg female)",
+        "url": "https://www.fci.be/Nomenclature/Standards/146g06-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Rhodesian Ridgeback (70-85 lb)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/rhodesian-ridgeback",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "rottweiler",
+    "name": "Rottweiler",
+    "aliases": [
+      "Rottie"
+    ],
+    "sizeClass": "giant",
+    "weightKg": {
+      "male": [
+        43.1,
+        61.2
+      ],
+      "female": [
+        36.3,
+        45.4
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      9,
+      10
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Rottweiler",
+        "url": "https://www.akc.org/dog-breeds/rottweiler/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Rottweiler",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/rottweiler",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "samoyed",
+    "name": "Samoyed",
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        20.4,
+        29.5
+      ],
+      "female": [
+        15.9,
+        22.7
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      11,
+      13
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Samoyed",
+        "url": "https://www.akc.org/dog-breeds/samoyed/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Samoyed",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/samoyed",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "shih-tzu",
+    "name": "Shih Tzu",
+    "sizeClass": "small",
+    "weightKg": {
+      "male": [
+        4.1,
+        8
+      ],
+      "female": [
+        4.1,
+        8
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      10.5,
+      16
+    ],
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Shih Tzu (4.5-8 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/utility/shih-tzu/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "FCI breed standard: Shih Tzu (4.5-8 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/208g09-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Shih Tzu",
+        "url": "https://www.akc.org/dog-breeds/shih-tzu/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Shih Tzu",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/shih-tzu",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "siberian-husky",
+    "name": "Siberian Husky",
+    "aliases": [
+      "Husky"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        20,
+        28
+      ],
+      "female": [
+        15.5,
+        23
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      12,
+      14
+    ],
+    "sources": [
+      {
+        "title": "FCI breed standard: Siberian Husky (dogs 20.5-28 kg, bitches 15.5-23 kg)",
+        "url": "https://www.fci.be/Nomenclature/Standards/270g05-en.pdf",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "The Kennel Club (UK) breed standard: Siberian Husky (dogs 20-27 kg, bitches 16-23 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/working/siberian-husky/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Siberian Husky",
+        "url": "https://www.akc.org/dog-breeds/siberian-husky/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Siberian Husky",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/siberian-husky",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "staffordshire-bull-terrier",
+    "name": "Staffordshire Bull Terrier",
+    "aliases": [
+      "Staffy",
+      "Staffie"
+    ],
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        12.7,
+        17.2
+      ],
+      "female": [
+        10.9,
+        15.4
+      ]
+    },
+    "energy": "high",
+    "lifespanYears": [
+      12,
+      14.5
+    ],
+    "sources": [
+      {
+        "title": "The Kennel Club (UK) breed standard: Staffordshire Bull Terrier (dogs 13-17 kg, bitches 11-15.4 kg)",
+        "url": "https://www.royalkennelclub.com/breed-standards/terrier/staffordshire-bull-terrier/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "AKC breed page: Staffordshire Bull Terrier",
+        "url": "https://www.akc.org/dog-breeds/staffordshire-bull-terrier/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Staffordshire Bull Terrier",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/staffordshire-bull-terrier",
+        "accessed": "2026-11-14"
+      }
+    ]
+  },
+  {
+    "id": "whippet",
+    "name": "Whippet",
+    "sizeClass": "medium",
+    "weightKg": {
+      "male": [
+        11.3,
+        18.1
+      ],
+      "female": [
+        9.1,
+        18.1
+      ]
+    },
+    "energy": "moderate",
+    "lifespanYears": [
+      12,
+      15
+    ],
+    "sources": [
+      {
+        "title": "AKC breed page: Whippet (25-40 lb)",
+        "url": "https://www.akc.org/dog-breeds/whippet/",
+        "accessed": "2026-11-14"
+      },
+      {
+        "title": "Hill's Pet breed page: Whippet (males 25-40 lb, females 20-35 lb)",
+        "url": "https://www.hillspet.com/dog-care/dog-breeds/whippet",
+        "accessed": "2026-11-14"
+      }
+    ]
+  }
+]

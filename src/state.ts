@@ -3,7 +3,8 @@
 
 import { useEffect, useState } from "react";
 import { ENERGY_UNITS, type Activity, type EnergyUnit } from "./feeding/energy";
-import { CUSTOM_NAME_MAX, FOODS, type CustomFoodInput } from "./feeding/foods";
+import { BREEDS } from "./feeding/breeds";
+import { CUSTOM_NAME_MAX, FOODS, brandsOf, findFood, foodForBrand, type CustomFoodInput } from "./feeding/foods";
 import type { Stage } from "./feeding/plan";
 import type { FoodType } from "./feeding/types";
 
@@ -11,12 +12,17 @@ const KEY = "hungrydog.v1";
 
 export interface FoodSlot {
   mode: "list" | "custom";
+  /** The brand picked first. Kept separately so a brand with several products can be picked before its food. */
+  brand: string;
+  /** The food, or "" while the owner still has to choose one of the brand's products. */
   foodId: string;
   custom: { name: string; type: FoodType; energy: string; unit: EnergyUnit; packageGrams: string };
 }
 
 export interface Form {
   stage: Stage;
+  /** Breed id, or "" for not set. */
+  breed: string;
   current: string;
   target: string;
   activity: Activity;
@@ -27,14 +33,19 @@ export interface Form {
   foods: [FoodSlot, FoodSlot];
 }
 
-const emptySlot = (type: FoodType): FoodSlot => ({
-  mode: FOODS.length ? "list" : "custom",
-  foodId: FOODS.find((f) => f.type === type)?.id ?? FOODS[0]?.id ?? "",
-  custom: { name: "", type, energy: "", unit: "kcal/100g", packageGrams: "" },
-});
+const emptySlot = (type: FoodType): FoodSlot => {
+  const food = FOODS.find((f) => f.type === type) ?? FOODS[0];
+  return {
+    mode: FOODS.length ? "list" : "custom",
+    brand: food?.brand ?? "",
+    foodId: food?.id ?? "",
+    custom: { name: "", type, energy: "", unit: "kcal/100g", packageGrams: "" },
+  };
+};
 
 export const DEFAULT_FORM: Form = {
   stage: "adult",
+  breed: "",
   current: "",
   target: "",
   activity: "typical",
@@ -55,10 +66,17 @@ function readSlot(v: unknown, fallback: FoodSlot): FoodSlot {
   if (typeof v !== "object" || v === null) return fallback;
   const s = v as Record<string, unknown>;
   const c = (typeof s.custom === "object" && s.custom !== null ? s.custom : {}) as Record<string, unknown>;
-  const foodId = str(s.foodId, fallback.foodId, 80);
+  // A known food sets the brand. Otherwise a known brand with no food yet is kept; anything else falls back.
+  const food = findFood(str(s.foodId, "", 80));
+  const brand = str(s.brand, "", 80);
+  const pick = food
+    ? { brand: food.brand, foodId: food.id }
+    : brandsOf(FOODS).includes(brand)
+      ? { brand, foodId: foodForBrand(FOODS, brand) }
+      : { brand: fallback.brand, foodId: fallback.foodId };
   return {
     mode: FOODS.length ? oneOf(s.mode, ["list", "custom"] as const, fallback.mode) : "custom",
-    foodId: FOODS.some((f) => f.id === foodId) ? foodId : fallback.foodId,
+    ...pick,
     custom: {
       name: str(c.name, "", CUSTOM_NAME_MAX),
       type: oneOf(c.type, ["dry", "wet"] as const, fallback.custom.type),
@@ -77,6 +95,7 @@ function load(): Form {
     const foods = Array.isArray(v.foods) ? v.foods : [];
     return {
       stage: oneOf(v.stage, ["puppy", "adult", "senior"] as const, DEFAULT_FORM.stage),
+      breed: BREEDS.some((b) => b.id === v.breed) ? (v.breed as string) : "",
       current: str(v.current, ""),
       target: str(v.target, ""),
       activity: oneOf(v.activity, ["low", "typical", "high"] as const, DEFAULT_FORM.activity),

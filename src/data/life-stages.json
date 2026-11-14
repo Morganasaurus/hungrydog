@@ -1,0 +1,74 @@
+{
+  "grownMonths": {
+    "toy": [
+      8,
+      12
+    ],
+    "small": [
+      8,
+      12
+    ],
+    "medium": [
+      8,
+      12
+    ],
+    "large": [
+      10,
+      18
+    ],
+    "giant": [
+      12,
+      18
+    ]
+  },
+  "seniorShareOfLifespan": 0.75,
+  "seniorYears": {
+    "toy": [
+      9,
+      12.5
+    ],
+    "small": [
+      9,
+      11
+    ],
+    "medium": [
+      8,
+      11
+    ],
+    "large": [
+      7.5,
+      9
+    ],
+    "giant": [
+      5.5,
+      7
+    ]
+  },
+  "sources": [
+    {
+      "title": "AAHA Canine Life Stage Guidelines 2019 (life stage poster): senior starts at the last 25% of estimated lifespan, breed and size dependent",
+      "url": "https://AAHA.org/globalassets/02-guidelines/canine-life-stage-2019/aaha_caninelifestages_poster.pdf",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "2023 AAHA Senior Care Guidelines for Dogs and Cats: senior defined by the 2019 rule, no fixed age",
+      "url": "https://www.AAHA.org/globalassets/02-guidelines/2023-aaha-senior-care-guidelines-for-dogs-and-cats/resources/2023-aaha-senior-care-guidelines-for-dogs-and-cats.pdf",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "Merck Veterinary Manual: Feeding Practices in Small Animals (skeletal maturity 8-12 months small/medium, 10-16 months large/giant)",
+      "url": "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/feeding-practices-in-small-animals",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "Tufts Foster Hospital Nutrition FAQs (puppy diet to 12 months; large and giant breeds 12-18 months)",
+      "url": "https://vet.tufts.edu/foster-hospital-small-animals/specialty-services/nutrition/nutrition-faqs",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "Tufts Petfoodology: Growth Guide (large breeds not before 18 months; Great Dane full grown at 18 months)",
+      "url": "https://sites.tufts.edu/petfoodology/2022/01/31/growth-guide-keeping-your-puppy-on-the-right-track/",
+      "accessed": "2026-11-14"
+    }
+  ]
+}

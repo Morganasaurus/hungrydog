@@ -1,0 +1,102 @@
+{
+  "id": "royal-canin-renal-wet",
+  "brand": "Royal Canin",
+  "name": "Renal Loaf",
+  "type": "wet",
+  "vetDiet": true,
+  "energy": {
+    "kcalPer100g": 158.6
+  },
+  "package": {
+    "label": "can",
+    "grams": 410
+  },
+  "adultGuide": [
+    {
+      "weightKg": 2,
+      "gramsLow": 111
+    },
+    {
+      "weightKg": 4,
+      "gramsLow": 187
+    },
+    {
+      "weightKg": 6,
+      "gramsLow": 254
+    },
+    {
+      "weightKg": 8,
+      "gramsLow": 315
+    },
+    {
+      "weightKg": 10,
+      "gramsLow": 372
+    },
+    {
+      "weightKg": 15,
+      "gramsLow": 504
+    },
+    {
+      "weightKg": 20,
+      "gramsLow": 626
+    },
+    {
+      "weightKg": 25,
+      "gramsLow": 740
+    },
+    {
+      "weightKg": 30,
+      "gramsLow": 848
+    },
+    {
+      "weightKg": 35,
+      "gramsLow": 952
+    },
+    {
+      "weightKg": 40,
+      "gramsLow": 1053
+    },
+    {
+      "weightKg": 45,
+      "gramsLow": 1150
+    },
+    {
+      "weightKg": 50,
+      "gramsLow": 1244
+    },
+    {
+      "weightKg": 55,
+      "gramsLow": 1337
+    },
+    {
+      "weightKg": 60,
+      "gramsLow": 1427
+    },
+    {
+      "weightKg": 70,
+      "gramsLow": 1602
+    },
+    {
+      "weightKg": 80,
+      "gramsLow": 1770
+    }
+  ],
+  "labelNotes": [
+    "Royal Canin says to feed it under your vet's supervision, and it can be fed for life. The label recommends a full health check every 6 months.",
+    "Keep fresh water available at all times.",
+    "Amounts are from the Normal weight column, read at your dog's target weight.",
+    "Mixing with Renal dry, the label gives for a normal-weight dog: 5 kg 50 g dry + 103 g wet; 10 kg 70 g + 205 g; 20 kg 176 g + 205 g; 30 kg 183 g + 410 g; 40 kg 268 g + 410 g."
+  ],
+  "source": {
+    "kind": "label",
+    "addedOn": "2026-11-14",
+    "notes": "Owner's can (Australia), feeding guide photo, plus Royal Canin Australia's Renal Loaf page. Energy: the label and the AU page both give metabolisable energy 1586 kcal/kg = 158.6 kcal/100 g. adultGuide is the NORMAL weight-condition column in grams from the AU page's table (2–80 kg). The owner's label gives the same column in cans (410 g): 1/2, 1, 1 1/2, 2, 2 1/2 cans for 5, 10, 20, 30, 40 kg (205, 410, 615, 820, 1025 g); those are the page's grams rounded to the nearest quarter can (e.g. 30 kg: 848 g ≈ 2 cans). The owner asked for grams rather than can fractions, so the page's exact grams are used. Label's other columns, cans: THIN 1/2, 1, 1 3/4, 2 1/4, 3; OVERWEIGHT 1/2, 3/4, 1 1/4, 1 3/4, 2 1/4. Mixed row (Renal dry g + cans) is the same as on the Renal dry label.",
+    "links": [
+      {
+        "title": "Renal Loaf – Royal Canin Australia (410 g can)",
+        "url": "https://www.royalcanin.com/au/dogs/products/vet-products/renal-4020",
+        "accessed": "2026-11-14"
+      }
+    ]
+  }
+}

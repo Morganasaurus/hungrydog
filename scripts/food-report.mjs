@@ -39,7 +39,7 @@ function report(food) {
   const out = [];
   const flags = [];
   const e = food.energy?.kcalPer100g;
-  out.push(`## ${food.brand} ${food.name} (\`${food.id}\`)${food.demo ? " (demo)" : ""}`);
+  out.push(`## ${food.brand} ${food.name} (\`${food.id}\`)${food.demo ? " (demo)" : ""}${food.vetDiet ? " (veterinary diet)" : ""}`);
   out.push(
     [
       `Type: ${food.type}`,

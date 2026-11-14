@@ -13,24 +13,27 @@ function foodName(i: PlanItem) {
   return [i.food.brand, i.food.name].filter(Boolean).join(" ");
 }
 
-function ItemRow({ item, meals, mixed }: { item: PlanItem; meals: number; mixed: boolean }) {
+function Amount({ item, meals, mixed }: { item: PlanItem; meals: number; mixed: boolean }) {
   const pkg = item.food.package;
   return (
     <div className="amount">
       <div className="amount-head">
-        <span className={`tag ${item.food.type}`}>{item.food.type}</span>
         <span className="amount-food">{foodName(item)}</span>
-        {mixed && <span className="share">{Math.round(item.share * 100)}%</span>}
+        <span className={`chip ${item.food.type}`}>
+          {item.food.type}
+          {mixed && ` · ${Math.round(item.share * 100)}%`}
+        </span>
       </div>
       <p className="grams">
         {item.gramsPerDay}
-        <span> g a day</span>
+        <span className="grams-unit"> g</span>
+        <span className="grams-per"> a day</span>
       </p>
       <p className="per-meal">
-        {meals > 1 ? `${item.gramsPerMeal} g per meal, ${meals} meals` : "in one meal"}
+        {meals > 1 ? `${item.gramsPerMeal} g × ${meals} meals` : "In one meal"}
         {pkg && item.packagesPerDay !== undefined && item.packagesPerDay > 0 && (
           <>
-            {" · "}about {quarters(item.packagesPerDay)} {item.packagesPerDay > 1 ? `${pkg.label}s` : pkg.label} ({pkg.grams} g)
+            {" · "}about {quarters(item.packagesPerDay)} {item.packagesPerDay > 1 ? `${pkg.label}s` : pkg.label}
           </>
         )}
       </p>
@@ -38,7 +41,7 @@ function ItemRow({ item, meals, mixed }: { item: PlanItem; meals: number; mixed:
   );
 }
 
-function NoteList({ notes }: { notes: Note[] }) {
+function Notes({ notes }: { notes: Note[] }) {
   if (!notes.length) return null;
   return (
     <ul className="notes">
@@ -54,17 +57,17 @@ function NoteList({ notes }: { notes: Note[] }) {
 export function Result({ plan, meals, empty }: { plan: Plan | null; meals: number; empty: string | null }) {
   if (empty || !plan) {
     return (
-      <section className="result card placeholder" aria-live="polite">
-        <div className="bowl" aria-hidden="true" />
+      <section className="summary placeholder" aria-live="polite">
+        <img src="/icon.svg" alt="" width={96} height={96} />
         <p>{empty}</p>
       </section>
     );
   }
   if (!plan.ok) {
     return (
-      <section className="result card" aria-live="polite">
-        <h2>Can't work this out yet</h2>
-        <NoteList notes={plan.notes} />
+      <section className="summary" aria-live="polite">
+        <h2 className="summary-title">Can't work this out yet</h2>
+        <Notes notes={plan.notes} />
       </section>
     );
   }
@@ -75,14 +78,14 @@ export function Result({ plan, meals, empty }: { plan: Plan | null; meals: numbe
   const infos = plan.notes.filter((n) => n.level === "info");
 
   return (
-    <section className="result card" aria-live="polite">
-      <h2>{plan.goal === "grow" ? "Feed your puppy" : "Feed your dog"}</h2>
+    <section className="summary" aria-live="polite">
+      <h2 className="summary-title">{plan.goal === "grow" ? "Feed your puppy" : "Feed your dog"}</h2>
       {plan.items.map((i) => (
-        <ItemRow key={i.food.id} item={i} meals={meals} mixed={mixed} />
+        <Amount key={i.food.id} item={i} meals={meals} mixed={mixed} />
       ))}
-      {plan.totalKcal !== undefined && <p className="kcal">About {plan.totalKcal.toLocaleString()} kcal a day in total.</p>}
-      <NoteList notes={warns} />
-      <NoteList notes={infos} />
+      {plan.totalKcal !== undefined && <p className="kcal">About {plan.totalKcal.toLocaleString()} kcal a day in total</p>}
+      <Notes notes={warns} />
+      <Notes notes={infos} />
 
       <details className="how">
         <summary>How we worked this out</summary>

@@ -1,7 +1,7 @@
 // Checks food and breed data. Used by the tests (every data file must pass) and at load time (a bad entry is
 // dropped rather than shown). Returns a list of human-readable problems; empty means valid.
 
-import type { Breed, Food } from "./types";
+import type { Breed, Food, LifeStages } from "./types";
 
 const ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
@@ -93,6 +93,7 @@ export function validateFood(raw: unknown): string[] {
   }
 
   if (f.demo !== undefined && f.demo !== true) e.push("demo must be true or absent");
+  if (f.vetDiet !== undefined && f.vetDiet !== true) e.push("vetDiet must be true or absent");
   if (f.custom !== undefined) e.push("custom is only for foods typed in by the owner, not data files");
   return e;
 }
@@ -110,11 +111,39 @@ export function validateBreed(raw: unknown): string[] {
     if (!Array.isArray(r) || r.length !== 2 || !isNum(r[0]) || !isNum(r[1]) || r[0] <= 0 || r[1] < r[0])
       e.push(`weightKg.${sex} must be [min, max]`);
   }
-  if (!Array.isArray(b.sources) || b.sources.length === 0) e.push("at least one source is required");
-  else
-    b.sources.forEach((s, i) => {
-      if (!isObj(s) || !isStr(s.title, 200) || !isStr(s.url, 500) || !/^https:\/\//.test(s.url) || !DATE.test(String(s.accessed)))
-        e.push(`sources[${i}] needs title, https url and accessed date`);
-    });
+  const life = b.lifespanYears;
+  if (!Array.isArray(life) || life.length !== 2 || !isNum(life[0]) || !isNum(life[1]) || life[0] < 5 || life[1] > 25 || life[1] < life[0])
+    e.push("lifespanYears must be [min, max] between 5 and 25");
+  if (b.note !== undefined && !isStr(b.note, 200)) e.push("note must be text up to 200 characters");
+  if (b.aliases !== undefined && (!Array.isArray(b.aliases) || !b.aliases.every((a) => isStr(a, 60)))) e.push("aliases must be short strings");
+  e.push(...checkSources(b.sources));
+  return e;
+}
+
+function checkSources(sources: unknown): string[] {
+  if (!Array.isArray(sources) || sources.length === 0) return ["at least one source is required"];
+  const e: string[] = [];
+  sources.forEach((s, i) => {
+    if (!isObj(s) || !isStr(s.title, 200) || !isStr(s.url, 500) || !/^https:\/\//.test(s.url) || !DATE.test(String(s.accessed)))
+      e.push(`sources[${i}] needs title, https url and accessed date`);
+  });
+  return e;
+}
+
+const SIZES = ["toy", "small", "medium", "large", "giant"] as const;
+
+export function validateLifeStages(raw: unknown): string[] {
+  if (!isObj(raw)) return ["not an object"];
+  const l = raw as Partial<LifeStages>;
+  const e: string[] = [];
+  const range = (v: unknown, lo: number, hi: number) =>
+    Array.isArray(v) && v.length === 2 && isNum(v[0]) && isNum(v[1]) && v[0] >= lo && v[1] <= hi && v[1] >= v[0];
+  for (const s of SIZES) {
+    if (!isObj(l.grownMonths) || !range(l.grownMonths[s], 4, 36)) e.push(`grownMonths.${s} must be [min, max] months (4–36)`);
+    if (!isObj(l.seniorYears) || !range(l.seniorYears[s], 4, 15)) e.push(`seniorYears.${s} must be [min, max] years (4–15)`);
+  }
+  if (!isNum(l.seniorShareOfLifespan) || l.seniorShareOfLifespan <= 0.5 || l.seniorShareOfLifespan >= 1)
+    e.push("seniorShareOfLifespan must be between 0.5 and 1");
+  e.push(...checkSources(l.sources));
   return e;
 }

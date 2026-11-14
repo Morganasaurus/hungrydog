@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import breedsRaw from "../data/breeds.json";
-import { validateBreed, validateFood } from "./validate";
+import { validateBreed, validateFood, validateLifeStages } from "./validate";
 
 // Read every data file through Vite's glob, so new files are picked up automatically.
 const asList = (files: Record<string, unknown>) =>
@@ -70,4 +70,11 @@ describe("validator catches mistakes", () => {
         puppyGuide: { columns: [{ adultKg: 30, points: [{ weightKg: 5, grams: 100 }, { weightKg: 35, grams: 300 }] }] },
       }),
     ).not.toEqual([]));
+});
+
+describe("life-stage guidance", () => {
+  const files = Object.values(import.meta.glob("../data/life-stages.json", { eager: true, import: "default" }));
+  it("is valid when present", () => {
+    for (const f of files) expect(validateLifeStages(f)).toEqual([]);
+  });
 });

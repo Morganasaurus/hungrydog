@@ -136,8 +136,15 @@ function fullDayAdult(food: Food, dog: DogInput): FullDay | Note {
 function fullDayPuppy(food: Food, dog: DogInput): FullDay | Note {
   const name = `${food.brand} ${food.name}`;
   // A catalogued food whose label only covers adults isn't made for growth, even if we know its calories.
-  if (!food.custom && food.adultGuide && !food.puppyGuide)
-    return { level: "stop", text: `${name}'s guide is for adult dogs only. Puppies need a food made for growth: choose a puppy or "all life stages" food.` };
+  // A catalogued food with no puppy guide at all (only calories) is treated the same way: we only list such foods
+  // when their label is for adults.
+  if (!food.custom && !food.puppyGuide)
+    return {
+      level: "stop",
+      text: food.adultGuide
+        ? `${name}'s guide is for adult dogs only. Puppies need a food made for growth: choose a puppy or "all life stages" food.`
+        : `${name} is for adult dogs, and has no puppy feeding guide. Puppies need a food made for growth: choose a puppy or "all life stages" food.`,
+    };
   if (food.puppyGuide) {
     const r = readPuppyGuide(food.puppyGuide, dog.currentKg, dog.targetKg);
     if (r.problem === "adult-below-table")
@@ -274,6 +281,15 @@ export function makePlan(dog: DogInput, choices: FoodChoice[]): Plan {
     notes.push({
       level: "warn",
       text: `${[unknownLabel.food.brand, unknownLabel.food.name].filter(Boolean).join(" ")} doesn't list its calories, so the split between the two foods is approximate. Weigh ${dog.stage === "puppy" ? "your puppy" : "your dog"} every week or two and adjust.`,
+    });
+
+  // Veterinary diets are fed for a medical condition: the vet's plan outranks the label and our maths.
+  // One note even when both foods are veterinary diets.
+  const vetNames = items.filter((i) => i.food.vetDiet).map((i) => [i.food.brand, i.food.name].filter(Boolean).join(" "));
+  if (vetNames.length)
+    notes.unshift({
+      level: "warn",
+      text: `${vetNames.join(" and ")} ${vetNames.length > 1 ? "are veterinary diets" : "is a veterinary diet"}. Feed ${vetNames.length > 1 ? "them" : "it"} under your vet's care, and if your vet has given you an amount, use theirs.${goal === "lose" || goal === "gain" ? " Change your dog's weight only as part of your vet's plan." : ""}`,
     });
 
   const allKnown = items.every((i) => i.kcalPerDay !== undefined);

@@ -1,9 +1,11 @@
 import { useMemo } from "react";
-import { Card, NumberField, Segmented } from "./components/Controls";
+import { Group, NumberRow, Segmented, SelectRow, TipCard } from "./components/Controls";
 import { FoodPicker } from "./components/FoodPicker";
 import { Result } from "./components/Result";
+import { BREEDS, LIFE_STAGES, findBreed } from "./feeding/breeds";
 import { customFood, findFood } from "./feeding/foods";
 import { LIMITS, makePlan, type FoodChoice, type Plan } from "./feeding/plan";
+import { ageTip, mealsTip, sizeFromWeight } from "./feeding/tips";
 import { parseNumber, slotCustomInput, useForm, type FoodSlot } from "./state";
 
 function slotFood(slot: FoodSlot, n: number) {
@@ -17,13 +19,22 @@ export default function App() {
   const puppy = form.stage === "puppy";
   const currentKg = parseNumber(form.current);
   const targetKg = parseNumber(form.target);
+  const breed = findBreed(form.breed);
   const food1 = slotFood(form.foods[0], 1);
   const food2 = form.mix ? slotFood(form.foods[1], 2) : undefined;
   const customBad = (i: 0 | 1) => form.foods[i].mode === "custom" && form.foods[i].custom.energy !== "" && !slotFood(form.foods[i], i + 1);
 
+  // Size for the tips: the breed's, or judged from the adult (target / expected adult) weight.
+  const size = breed?.sizeClass ?? (weightOk(targetKg) ? sizeFromWeight(targetKg) : undefined);
+  const meals = mealsTip(form.stage, size, form.meals, breed?.name);
+  const age = ageTip(form.stage, size, LIFE_STAGES, breed, weightOk(targetKg) ? targetKg : undefined);
+
   const { plan, empty } = useMemo((): { plan: Plan | null; empty: string | null } => {
     if (form.current === "" || form.target === "")
-      return { plan: null, empty: puppy ? "Enter your puppy's weight and expected adult weight to see how much to feed." : "Enter your dog's weight and target weight to see how much to feed." };
+      return {
+        plan: null,
+        empty: puppy ? "Enter your puppy's weight and expected adult weight." : "Enter your dog's weight and target weight.",
+      };
     if (!food1 || (form.mix && !food2)) return { plan: null, empty: "Choose a food, or enter the energy from the bag." };
     const choices: FoodChoice[] = form.mix
       ? [
@@ -42,119 +53,153 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="top">
-        <img src="/icon.svg" alt="" width={64} height={64} />
-        <div>
-          <h1>HungryDog</h1>
-          <p>How much to feed your dog, from the label on their food.</p>
-        </div>
+      <header className="toolbar">
+        <span className="toolbar-title" aria-hidden="true">
+          HungryDog
+        </span>
+        <button type="button" className="text-button" onClick={reset}>
+          Start Again
+        </button>
       </header>
 
-      <main className="layout">
-        <div className="inputs">
-          <Card
-            title="Your dog"
-            aside={
-              <button type="button" className="link" onClick={reset}>
-                Start again
-              </button>
-            }
-          >
-            <Segmented
-              label="Age"
-              value={form.stage}
-              options={[
-                { value: "puppy", label: "Puppy", hint: "still growing" },
-                { value: "adult", label: "Adult" },
-                { value: "senior", label: "Senior", hint: "7+ years" },
-              ]}
-              onChange={(stage) => update((f) => ({ ...f, stage }))}
-            />
-            <div className="pair">
-              <NumberField
+      <div className="page">
+        <div className="title-block">
+          <img className="app-icon" src="/icon.svg" alt="" width={56} height={56} />
+          <div>
+            <h1 className="large-title">HungryDog</h1>
+            <p className="subtitle">How much to feed, from the label on your dog's food.</p>
+          </div>
+        </div>
+
+        <main className="layout">
+          <div className="inputs">
+            <Group
+              title="Your Dog"
+              footer={puppy ? "Not sure of the adult weight? Your vet or breeder can estimate it." : "Target weight: the same as now if they're in good shape."}
+            >
+              <Segmented
+                label="Age"
+                full
+                value={form.stage}
+                options={[
+                  { value: "puppy", label: "Puppy" },
+                  { value: "adult", label: "Adult" },
+                  { value: "senior", label: "Senior" },
+                ]}
+                onChange={(stage) => update((f) => ({ ...f, stage }))}
+              />
+              {BREEDS.length > 0 && (
+                <SelectRow label="Breed" value={form.breed} onChange={(breed) => update((f) => ({ ...f, breed }))}>
+                  <option value="">Not set</option>
+                  {BREEDS.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.name}
+                    </option>
+                  ))}
+                </SelectRow>
+              )}
+              <NumberRow
                 label={puppy ? "Weight now" : "Current weight"}
                 value={form.current}
                 onChange={(current) => update((f) => ({ ...f, current }))}
                 unit="kg"
-                placeholder="e.g. 12.5"
+                placeholder="0"
                 invalid={form.current !== "" && !weightOk(currentKg)}
               />
-              <NumberField
-                label={puppy ? "Expected adult weight" : "Target weight"}
+              <NumberRow
+                label={puppy ? "Adult weight" : "Target weight"}
                 value={form.target}
                 onChange={(target) => update((f) => ({ ...f, target }))}
                 unit="kg"
-                placeholder="e.g. 11"
+                placeholder="0"
                 invalid={form.target !== "" && !weightOk(targetKg)}
-                hint={puppy ? "Not sure? Your vet or breeder can estimate it." : "Same as current weight if they're in good shape."}
               />
-            </div>
-            {!puppy && (
+              {!puppy && (
+                <Segmented
+                  label="Activity"
+                  value={form.activity}
+                  options={[
+                    { value: "low", label: "Low" },
+                    { value: "typical", label: "Typical" },
+                    { value: "high", label: "High" },
+                  ]}
+                  onChange={(activity) => update((f) => ({ ...f, activity }))}
+                />
+              )}
               <Segmented
-                label="How active"
-                value={form.activity}
-                options={[
-                  { value: "low", label: "Less active" },
-                  { value: "typical", label: "Typical" },
-                  { value: "high", label: "Very active" },
-                ]}
-                onChange={(activity) => update((f) => ({ ...f, activity }))}
+                label="Meals a day"
+                value={String(form.meals) as "1" | "2" | "3" | "4"}
+                options={(["1", "2", "3", "4"] as const).map((m) => ({ value: m, label: m }))}
+                onChange={(m) => update((f) => ({ ...f, meals: Number(m) }))}
+              />
+            </Group>
+
+            <FoodPicker
+              title={form.mix ? "First Food" : "Food"}
+              slot={form.foods[0]}
+              onChange={(s) => setSlot(0, s)}
+              customInvalid={customBad(0)}
+              extraRows={
+                !form.mix && (
+                  <button type="button" className="list-row add-row" onClick={() => update((f) => ({ ...f, mix: true }))}>
+                    <span className="plus" aria-hidden="true" />
+                    Add a Second Food
+                  </button>
+                )
+              }
+              footer={!form.mix ? "Mixing wet and dry? Add the second food to split the day between them." : undefined}
+            />
+
+            {form.mix && (
+              <FoodPicker
+                title="Second Food"
+                slot={form.foods[1]}
+                onChange={(s) => setSlot(1, s)}
+                customInvalid={customBad(1)}
+                extraRows={
+                  <>
+                    <div className="list-row stacked">
+                      <label className="row-label" htmlFor="share">
+                        Split of the day
+                      </label>
+                      <input
+                        id="share"
+                        className="range"
+                        type="range"
+                        min={10}
+                        max={90}
+                        step={5}
+                        value={form.share1}
+                        aria-valuetext={`First food ${form.share1}%, second food ${100 - form.share1}%`}
+                        onChange={(e) => update((f) => ({ ...f, share1: Number(e.target.value) }))}
+                      />
+                      <div className="split">
+                        <span>First {form.share1}%</span>
+                        <span>Second {100 - form.share1}%</span>
+                      </div>
+                    </div>
+                    <button type="button" className="list-row destructive" onClick={() => update((f) => ({ ...f, mix: false }))}>
+                      Remove Second Food
+                    </button>
+                  </>
+                }
               />
             )}
-            <Segmented
-              label="Meals a day"
-              value={String(form.meals) as "1" | "2" | "3" | "4"}
-              options={(["1", "2", "3", "4"] as const).map((m) => ({ value: m, label: m }))}
-              onChange={(m) => update((f) => ({ ...f, meals: Number(m) }))}
-            />
-          </Card>
+          </div>
 
-          <Card title={form.mix ? "Foods" : "Food"}>
-            <FoodPicker label={form.mix ? "First food" : "Food"} slot={form.foods[0]} onChange={(s) => setSlot(0, s)} customInvalid={customBad(0)} />
-            {form.mix ? (
-              <>
-                <hr />
-                <FoodPicker label="Second food" slot={form.foods[1]} onChange={(s) => setSlot(1, s)} customInvalid={customBad(1)} />
-                <div className="field">
-                  <label className="field-label" htmlFor="share">
-                    Split of the day's food
-                  </label>
-                  <input
-                    id="share"
-                    className="range"
-                    type="range"
-                    min={10}
-                    max={90}
-                    step={5}
-                    value={form.share1}
-                    aria-valuetext={`First food ${form.share1}%, second food ${100 - form.share1}%`}
-                    onChange={(e) => update((f) => ({ ...f, share1: Number(e.target.value) }))}
-                  />
-                  <div className="split">
-                    <span>First {form.share1}%</span>
-                    <span>Second {100 - form.share1}%</span>
-                  </div>
-                </div>
-                <button type="button" className="secondary" onClick={() => update((f) => ({ ...f, mix: false }))}>
-                  Remove second food
-                </button>
-              </>
-            ) : (
-              <button type="button" className="secondary" onClick={() => update((f) => ({ ...f, mix: true }))}>
-                + Add a second food (e.g. wet with dry)
-              </button>
-            )}
-          </Card>
-        </div>
-
-        <div className="output">
-          <Result plan={plan} meals={form.meals} empty={empty} />
-          <p className="disclaimer">
-            HungryDog gives a starting point from the food maker's guide. Every dog is different: weigh yours
-            regularly and adjust. For puppies, pregnant or nursing dogs, or dogs with health problems, ask your vet.
-          </p>
-        </div>
-      </main>
+          <div className="output">
+            <Result plan={plan} meals={form.meals} empty={empty} />
+            <div className="tips">
+              <TipCard tip={meals} />
+              {age && <TipCard tip={age} icon="calendar" />}
+            </div>
+            <p className="disclaimer">
+              HungryDog gives a starting point from the food maker's guide. Every dog is different: weigh yours regularly
+              and adjust. For puppies, pregnant or nursing dogs, or dogs with health problems, ask your vet.
+            </p>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

@@ -21,16 +21,44 @@ with defaults, never rename the key, and treat saved data as untrusted).
   - `guide.ts`: reads adult and puppy label tables.
   - `plan.ts`: turns inputs into a plan and its notes.
   - `foods.ts`: loads the food list and builds custom foods.
+  - `breeds.ts`: loads breeds and life-stage guidance.
+  - `tips.ts`: the meals-a-day and age tips (sourced wording, tested in `tips.test.ts`).
 - `src/data/foods/*.json`: **the food database**, one file per product, file name = `id`. Added progressively from
-  guides the owner supplies (use the `feeding-guide-curator` agent).
+  guides the owner supplies (use the `add-food` skill).
 - `src/data/demo/*.json`: made-up foods for development (`"demo": true`). Only loaded when `import.meta.env.DEV`, so
   they never ship; `npm run build` then `grep -l made-up dist/assets/*.js` should find nothing.
-- `src/data/breeds.json`: breed weight ranges with sources (use the `breed-researcher` agent). Not used in the UI yet.
-- `src/components/`: `Controls` (segmented control, number field, card), `FoodPicker` (list or custom food from the
-  bag), `Result`.
-- `src/app.css`: the whole look, warm palette as CSS variables with a dark scheme via `prefers-color-scheme`. Use the
-  tokens, never hard-coded colours. **No inline `style` attributes**: the CSP (`style-src 'self'`) blocks them.
-- Layout: one column on phones; from 900px, inputs on the left and the result sticky on the right.
+- `src/data/breeds.json`: breed weights, life spans and size classes, with sources (use the `breed-researcher` agent).
+  Powers the optional Breed picker and the age tip.
+- `src/data/life-stages.json`: vet guidance by size class: when dogs finish growing, senior age, and the AAHA
+  "senior = last 25% of life span" rule.
+- `src/components/`: `Controls` (`Group`, `Row`, `Segmented`, `NumberRow`, `SelectRow`, `TipCard`), `FoodPicker`
+  (Brand, then that brand's Food; a brand with one product shows it as a fixed value, one with several starts on
+  "Choose"), `Result`.
+
+## Look and feel: a native Apple app
+
+The owner wants it to look and feel like a native iOS/iPadOS app.
+- **Colours:** Apple system colours in light and dark, following the device.
+  - systemOrange is the tint, with the increased-contrast orange `--tint-text` for orange text on light backgrounds.
+  - systemBrown and systemTeal mark dry and wet food.
+  - Use the tokens in `src/app.css`, never hard-coded colours.
+- **Type:** SF fonts via `-apple-system`; rounded numerals (`ui-rounded`) for the big gram figures.
+- **Patterns:**
+  - Settings-style grouped inset lists: uppercase group titles, rows with the label left and the value right,
+    footers for hints.
+  - iOS segmented controls (32px pill with a 44px tap area).
+  - Health-style summary card.
+  - TipKit-style tips: one key line, a heads-up if needed, then "Learn More".
+  - Title Case for buttons ("Start Again", "Add a Second Food").
+- **Layout:** one column on phones (your dog → food → result → tips). From 900px it's like an iPad split view:
+  inputs on the left, result and tips sticky on the right.
+- **Logo:** `public/icon.svg` is an original pop-art drawing of the owner's dogs, heads and shoulders only:
+  Truffle, a chocolate Labradoodle drawn with a Lab-shaped head and doodle hints (wavy crown, forelock, wavy ear
+  tips; the owner doesn't want her head "poofy"), and Pepper, a Rottweiler puppy with tan markings. Bold black
+  outlines, yellow Ben-Day dots over a blue band. Keep it simple: no clothes, collars or props. Square, full-bleed:
+  CSS and iOS round the corners. `public/apple-touch-icon.png` (180px) is rendered from it with headless Edge;
+  re-render it when the SVG changes.
+- **No inline `style` attributes:** the CSP (`style-src 'self'`) blocks them.
 
 ## Feeding rules already decided
 
@@ -54,9 +82,13 @@ with defaults, never rename the key, and treat saved data as untrusted).
 - Rounding: daily amounts to whole grams under 50 g, otherwise to 5 g, and never 0 g. Per meal is whole grams from
   the rounded daily amount, so meals add up to the day. Cans to quarters.
 - A catalogued food is only used for the life stage its label covers: puppy-only labels are refused for adults, and
-  adult-only labels for puppies, even when the energy is known. Custom foods (`custom: true`, typed in by the owner)
+  adult-only labels for puppies, even when the energy is known. A listed food with energy but no table at all (e.g. a
+  "450 g per 5 kg" rule only) is fed from calories and is adult-only. Custom foods (`custom: true`, typed in by the owner)
   can feed puppies from calories, with a note to check the bag says growth or all life stages. Very young puppies
   (under 25% of adult weight) on calorie estimates are pointed to the vet.
+- **Veterinary diets** (`"vetDiet": true`, e.g. renal or prescription foods): amounts still come from the label,
+  but the result leads with a warning that the vet's plan and amounts come first, and that weight changes belong to
+  the vet's plan.
 - **Never invent label numbers.** Only what's printed on the owner's guide or on a cited page (maker's site
   first), recorded in `source.links` and `source.notes`.
 - Any change to `src/feeding/` needs tests with hand-checked expectations. If a test disagrees with the code, work

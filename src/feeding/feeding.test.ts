@@ -260,3 +260,56 @@ describe("Orijen Puppy Large with its published energy", () => {
     expect(p.notes.some((n) => n.text.includes("typical estimate"))).toBe(false);
   });
 });
+
+describe("veterinary diets", () => {
+  const vet: Food = { ...dry, id: "vet", brand: "Vet", name: "Renal", vetDiet: true };
+
+  it("puts the vet first, as a warning, without changing the amount", () => {
+    const plain = makePlan(adult({ currentKg: 20, targetKg: 20 }), [{ food: dry, share: 1 }]);
+    const p = makePlan(adult({ currentKg: 20, targetKg: 20 }), [{ food: vet, share: 1 }]);
+    expect(p.items[0].gramsPerDay).toBe(plain.items[0].gramsPerDay);
+    expect(p.notes[0].level).toBe("warn");
+    expect(p.notes[0].text).toMatch(/^Vet Renal is a veterinary diet\..*use theirs\.$/);
+  });
+
+  it("adds that weight changes belong to the vet's plan when the target differs", () => {
+    const p = makePlan(adult({ currentKg: 22, targetKg: 20 }), [{ food: vet, share: 1 }]);
+    expect(p.notes[0].text).toMatch(/only as part of your vet's plan/);
+  });
+
+  it("says nothing extra for ordinary foods", () => {
+    const p = makePlan(adult(), [{ food: dry, share: 1 }]);
+    expect(p.notes.some((n) => /veterinary diet/.test(n.text))).toBe(false);
+  });
+});
+
+describe("two veterinary diets", () => {
+  it("get one combined note, not two", () => {
+    const a: Food = { ...dry, id: "a", brand: "Vet", name: "Renal", vetDiet: true };
+    const b: Food = { ...wet, id: "b", brand: "Vet", name: "Renal Loaf", vetDiet: true };
+    const p = makePlan(adult({ currentKg: 20, targetKg: 20 }), [
+      { food: a, share: 0.5 },
+      { food: b, share: 0.5 },
+    ]);
+    const vet = p.notes.filter((n) => /veterinary diet/.test(n.text));
+    expect(vet).toHaveLength(1);
+    expect(vet[0].text).toMatch(/^Vet Renal and Vet Renal Loaf are veterinary diets\. Feed them/);
+  });
+});
+
+describe("listed foods with calories but no table", () => {
+  const caloriesOnly: Food = { id: "c", brand: "Brand", name: "Stew", type: "wet", energy: { kcalPer100g: 65 }, source: { kind: "label", addedOn: "2026-01-01" } };
+
+  it("feed adults from calories: 20 kg typical is 1.6 × RER ≈ 1059 kcal ≈ 1630 g at 65 kcal/100 g", () => {
+    const p = makePlan(adult({ currentKg: 20, targetKg: 20 }), [{ food: caloriesOnly, share: 1 }]);
+    expect(p.ok).toBe(true);
+    expect(p.items[0].method).toBe("calories");
+    expect(p.items[0].gramsPerDay).toBe(1630);
+  });
+
+  it("are refused for puppies", () => {
+    const p = makePlan(puppy(10, 30), [{ food: caloriesOnly, share: 1 }]);
+    expect(p.ok).toBe(false);
+    expect(p.notes[0].text).toMatch(/is for adult dogs, and has no puppy feeding guide/);
+  });
+});

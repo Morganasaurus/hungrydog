@@ -1,77 +1,109 @@
-import { useId } from "react";
 import { ENERGY_UNITS, type EnergyUnit } from "../feeding/energy";
-import { CUSTOM_NAME_MAX, FOODS, TYPICAL_KCAL_PER_100G } from "../feeding/foods";
+import { CUSTOM_NAME_MAX, FOODS, TYPICAL_KCAL_PER_100G, brandsOf, foodForBrand, foodsOfBrand } from "../feeding/foods";
 import type { Food } from "../feeding/types";
 import type { FoodSlot } from "../state";
-import { NumberField, Segmented } from "./Controls";
+import { Group, NumberRow, Row, Segmented, SelectRow } from "./Controls";
+import { useId, type ReactNode } from "react";
 
 const CUSTOM = "__custom";
 
 function covers(f: Food): string {
-  const parts = [f.puppyGuide && "puppy guide", f.adultGuide && "adult guide"].filter(Boolean);
-  return parts.length ? parts.join(" + ") : "calories only";
+  // Listed foods without a puppy guide are adult-only in the app (see fullDayPuppy in plan.ts).
+  const parts = [f.puppyGuide && "puppy", (f.adultGuide || !f.puppyGuide) && "adult"].filter(Boolean);
+  return parts.join(" + ");
 }
 
-export function FoodPicker(props: { label: string; slot: FoodSlot; onChange: (s: FoodSlot) => void; customInvalid: boolean }) {
-  const id = useId();
+const BRANDS = brandsOf(FOODS);
+
+/** One food as a grouped list: brand, then that brand's food; for a custom food, its details from the bag. */
+export function FoodPicker(props: {
+  title: string;
+  slot: FoodSlot;
+  onChange: (s: FoodSlot) => void;
+  customInvalid: boolean;
+  extraRows?: ReactNode;
+  footer?: ReactNode;
+}) {
+  const nameId = useId();
   const { slot, onChange } = props;
   const set = (patch: Partial<FoodSlot["custom"]>) => onChange({ ...slot, custom: { ...slot.custom, ...patch } });
-  const groups: { label: string; foods: Food[] }[] = [
-    { label: "Dry food", foods: FOODS.filter((f) => f.type === "dry") },
-    { label: "Wet food", foods: FOODS.filter((f) => f.type === "wet") },
-  ].filter((g) => g.foods.length);
+  const custom = slot.mode === "custom";
+  const products = foodsOfBrand(FOODS, slot.brand);
+  const mixedTypes = products.some((f) => f.type === "dry") && products.some((f) => f.type === "wet");
+  const option = (f: Food) => (
+    <option key={f.id} value={f.id}>
+      {f.name} ({covers(f)})
+    </option>
+  );
+
+  const footer = custom ? (
+    <>
+      {props.customInvalid ? "That energy figure looks off: check the unit. " : ""}
+      Find the energy near the analysis on the bag or can. {TYPICAL_KCAL_PER_100G[slot.custom.type]}
+    </>
+  ) : (
+    props.footer
+  );
 
   return (
-    <div className="food-picker">
+    <Group title={props.title} footer={footer}>
       {FOODS.length > 0 && (
-        <div className="field">
-          <label className="field-label" htmlFor={id}>
-            {props.label}
-          </label>
-          <select
-            id={id}
-            className="select"
-            value={slot.mode === "custom" ? CUSTOM : slot.foodId}
-            onChange={(e) =>
-              e.target.value === CUSTOM ? onChange({ ...slot, mode: "custom" }) : onChange({ ...slot, mode: "list", foodId: e.target.value })
-            }
-          >
-            {groups.map((g) => (
-              <optgroup key={g.label} label={g.label}>
-                {g.foods.map((f) => (
-                  <option key={f.id} value={f.id}>
-                    {f.brand} {f.name} · {covers(f)}
-                  </option>
-                ))}
-              </optgroup>
-            ))}
-            <option value={CUSTOM}>Not listed: enter it from the bag or can</option>
-          </select>
-        </div>
+        <SelectRow
+          label="Brand"
+          value={custom ? CUSTOM : slot.brand}
+          onChange={(v) =>
+            v === CUSTOM
+              ? onChange({ ...slot, mode: "custom" })
+              : onChange({ ...slot, mode: "list", brand: v, foodId: v === slot.brand ? slot.foodId : foodForBrand(FOODS, v) })
+          }
+        >
+          {BRANDS.map((b) => (
+            <option key={b} value={b}>
+              {b}
+            </option>
+          ))}
+          <option value={CUSTOM}>Not listed: enter from the bag</option>
+        </SelectRow>
       )}
-
-      {slot.mode === "custom" && (
-        <div className="custom-food">
-          {FOODS.length === 0 && <p className="field-label">{props.label}</p>}
-          <p className="hint">
-            Find the energy on the bag or can. It's usually near the analysis and printed as kcal or kJ (per kg or per
-            100 g).
-          </p>
-          <div className="field">
-            <label className="field-label" htmlFor={`${id}-name`}>
-              Name <span className="optional">(optional)</span>
-            </label>
-            <input
-              id={`${id}-name`}
-              className="text"
-              type="text"
-              autoComplete="off"
-              maxLength={CUSTOM_NAME_MAX}
-              value={slot.custom.name}
-              placeholder="e.g. Chicken kibble"
-              onChange={(e) => set({ name: e.target.value })}
-            />
-          </div>
+      {!custom &&
+        products.length > 0 &&
+        (products.length === 1 ? (
+          <Row label="Food">
+            <span className="row-value">
+              {products[0].name} ({covers(products[0])})
+            </span>
+          </Row>
+        ) : (
+          <SelectRow label="Food" value={slot.foodId} onChange={(foodId) => onChange({ ...slot, foodId })}>
+            {slot.foodId === "" && (
+              <option value="" disabled>
+                Choose
+              </option>
+            )}
+            {mixedTypes
+              ? (["dry", "wet"] as const).map((t) => (
+                  <optgroup key={t} label={t === "dry" ? "Dry food" : "Wet food"}>
+                    {products.filter((f) => f.type === t).map(option)}
+                  </optgroup>
+                ))
+              : products.map(option)}
+          </SelectRow>
+        ))}
+      {custom && (
+        <>
+          <Row label="Name" htmlFor={nameId}>
+            <span className="value-input">
+              <input
+                id={nameId}
+                type="text"
+                autoComplete="off"
+                maxLength={CUSTOM_NAME_MAX}
+                value={slot.custom.name}
+                placeholder="Optional"
+                onChange={(e) => set({ name: e.target.value })}
+              />
+            </span>
+          </Row>
           <Segmented
             label="Type"
             value={slot.custom.type}
@@ -81,43 +113,26 @@ export function FoodPicker(props: { label: string; slot: FoodSlot; onChange: (s:
             ]}
             onChange={(type) => set({ type })}
           />
-          <div className="energy-row">
-            <NumberField
-              label="Energy"
-              value={slot.custom.energy}
-              onChange={(energy) => set({ energy })}
-              unit=""
-              placeholder={slot.custom.type === "dry" ? "e.g. 380" : "e.g. 95"}
-              invalid={props.customInvalid}
-            />
-            <div className="field">
-              <label className="field-label" htmlFor={`${id}-unit`}>
-                Per
-              </label>
-              <select id={`${id}-unit`} className="select" value={slot.custom.unit} onChange={(e) => set({ unit: e.target.value as EnergyUnit })}>
-                {ENERGY_UNITS.map((u) => (
-                  <option key={u} value={u}>
-                    {u}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <p className="hint">
-            {props.customInvalid ? "That figure looks off. Check it's the right unit. " : ""}
-            {TYPICAL_KCAL_PER_100G[slot.custom.type]}
-          </p>
+          <NumberRow
+            label="Energy"
+            value={slot.custom.energy}
+            onChange={(energy) => set({ energy })}
+            placeholder={slot.custom.type === "dry" ? "380" : "95"}
+            invalid={props.customInvalid}
+          />
+          <SelectRow label="Per" value={slot.custom.unit} onChange={(v) => set({ unit: v as EnergyUnit })}>
+            {ENERGY_UNITS.map((u) => (
+              <option key={u} value={u}>
+                {u}
+              </option>
+            ))}
+          </SelectRow>
           {slot.custom.type === "wet" && (
-            <NumberField
-              label="Can or tray size (optional)"
-              value={slot.custom.packageGrams}
-              onChange={(packageGrams) => set({ packageGrams })}
-              unit="g"
-              placeholder="e.g. 400"
-            />
+            <NumberRow label="Can or tray size" value={slot.custom.packageGrams} onChange={(packageGrams) => set({ packageGrams })} unit="g" placeholder="Optional" />
           )}
-        </div>
+        </>
       )}
-    </div>
+      {props.extraRows}
+    </Group>
   );
 }

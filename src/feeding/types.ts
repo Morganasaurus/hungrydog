@@ -54,6 +54,9 @@ export interface Food {
     /** Pages researched for this food (the maker's own pages first). */
     links?: { title: string; url: string; accessed: string }[];
   };
+  /** A veterinary (prescription) diet. The app still shows the label's amounts, but tells the owner up front that
+   *  their vet's plan and amounts come first. */
+  vetDiet?: true;
   /** Made-up sample data for development. Never shipped in a production build. */
   demo?: boolean;
   /** Typed in by the owner from their bag or can (calories only). Never set in data files. */
@@ -71,5 +74,20 @@ export interface Breed {
   /** Typical healthy adult weight ranges, [min, max] kg. */
   weightKg: { male: [number, number]; female: [number, number] };
   energy: EnergyLevel;
+  /** Typical life expectancy, [min, max] years. Senior age is worked out from this (last quarter of life). */
+  lifespanYears: [number, number];
+  /** Short owner-facing caveat, e.g. that a crossbreed's size varies a lot. */
+  note?: string;
+  sources: { title: string; url: string; accessed: string }[];
+}
+
+/** General life-stage guidance by size, from veterinary sources (src/data/life-stages.json). */
+export interface LifeStages {
+  /** Age range (months) at which dogs of each size usually finish growing. */
+  grownMonths: Record<SizeClass, [number, number]>;
+  /** A dog counts as senior from this share of its expected life span (0.75 = the last quarter). */
+  seniorShareOfLifespan: number;
+  /** Used when no breed is chosen: typical senior age by size, [min, max] years. */
+  seniorYears: Record<SizeClass, [number, number]>;
   sources: { title: string; url: string; accessed: string }[];
 }

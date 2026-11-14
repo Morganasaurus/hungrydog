@@ -43,6 +43,9 @@ existing file in `src/data/foods/` (e.g. `orijen-puppy-large.json`) as a model.
   Don't copy marketing text.
 - `id` = file name: brand and product in lower-case words joined by dashes (`orijen-puppy-large`).
   `source.kind` = `label` or `maker-website`; `addedOn` = today's date.
+- Veterinary or prescription diets (renal, hepatic, urinary, weight-loss diets sold through vets): set
+  `"vetDiet": true`. Tables by body condition (thin / normal / overweight): put the **normal** column in
+  `adultGuide` (the app feeds for target weight) and record the other columns in `source.notes`.
 - Wet food sold in cans, trays or pouches: add `package` (`label` "can", "tray" or "pouch", and `grams`).
 
 ## Check your work

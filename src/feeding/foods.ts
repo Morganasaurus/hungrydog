@@ -22,6 +22,24 @@ export function findFood(id: string): Food | undefined {
   return FOODS.find((f) => f.id === id);
 }
 
+/** Brands in the list, A–Z, each once. */
+export function brandsOf(foods: Food[]): string[] {
+  return [...new Set(foods.map((f) => f.brand))].sort((a, b) => a.localeCompare(b));
+}
+
+/** One brand's products: dry first, then wet, A–Z within each. */
+export function foodsOfBrand(foods: Food[], brand: string): Food[] {
+  return foods
+    .filter((f) => f.brand === brand)
+    .sort((a, b) => (a.type === b.type ? a.name.localeCompare(b.name) : a.type === "dry" ? -1 : 1));
+}
+
+/** The food to select after picking a brand: its only product, or none ("") so the owner chooses. */
+export function foodForBrand(foods: Food[], brand: string): string {
+  const list = foodsOfBrand(foods, brand);
+  return list.length === 1 ? list[0].id : "";
+}
+
 export interface CustomFoodInput {
   name: string;
   type: FoodType;

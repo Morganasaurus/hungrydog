@@ -1,69 +1,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <title>HungryDog: a Rottweiler puppy and a brown Labradoodle</title>
-  <rect width="128" height="128" rx="28" fill="#e8772e"/>
-
-  <!-- Labradoodle (right): brown, curly, long fluffy ears -->
-  <g fill="#6f411d">
-    <ellipse cx="61" cy="68" rx="9" ry="16"/>
-    <ellipse cx="107" cy="68" rx="9" ry="16"/>
-    <circle cx="84" cy="55" r="24"/>
-    <circle cx="69" cy="37" r="9"/>
-    <circle cx="79" cy="31" r="10"/>
-    <circle cx="91" cy="31" r="10"/>
-    <circle cx="101" cy="39" r="9"/>
+  <title>HungryDog: Truffle the Labradoodle and Pepper the Rottweiler</title>
+  <defs>
+    <pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle cx="3.5" cy="3.5" r="1.9" fill="#ff3b30"/>
+    </pattern>
+  </defs>
+  <rect width="128" height="128" fill="#ffd60a"/>
+  <rect width="128" height="128" fill="url(#dots)" opacity="0.55"/>
+  <path d="M0 96L128 70V128H0z" fill="#0a84ff"/>
+  <path d="M0 96L128 70" stroke="#111" stroke-width="3"/>
+  <g stroke="#111" stroke-width="7" stroke-linejoin="round">
+    <polygon points="30,45 21,50 20,76 30,73" fill="#111" stroke-linejoin="round"/>
+    <polygon points="58,45 67,50 68,76 58,73" fill="#111" stroke-linejoin="round"/>
+    <circle cx="21.5" cy="78.5" r="4" fill="#111"/>
+    <circle cx="27.5" cy="76.5" r="3.6" fill="#111"/>
+    <circle cx="66.5" cy="78.5" r="4" fill="#111"/>
+    <circle cx="60.5" cy="76.5" r="3.6" fill="#111"/>
+    <ellipse cx="44" cy="126" rx="27" ry="32" fill="#111"/>
+    <ellipse cx="44" cy="91" rx="17" ry="10" fill="#111"/>
+    <ellipse cx="44" cy="60" rx="21" ry="20" fill="#111"/>
+    <circle cx="35" cy="42.5" r="5" fill="#111"/>
+    <circle cx="44" cy="40.5" r="5.5" fill="#111"/>
+    <circle cx="53" cy="42.5" r="5" fill="#111"/>
   </g>
-  <g fill="#8e5a2c">
-    <circle cx="57" cy="60" r="4.5"/>
-    <circle cx="63" cy="70" r="4.5"/>
-    <circle cx="58" cy="79" r="4.5"/>
-    <circle cx="111" cy="60" r="4.5"/>
-    <circle cx="105" cy="70" r="4.5"/>
-    <circle cx="110" cy="79" r="4.5"/>
-    <circle cx="72" cy="35" r="4.5"/>
-    <circle cx="82" cy="30" r="4.5"/>
-    <circle cx="93" cy="31" r="4.5"/>
-    <circle cx="100" cy="40" r="4"/>
-    <circle cx="86" cy="40" r="4"/>
-    <circle cx="76" cy="43" r="3.5"/>
+  <polygon points="30,45 21,50 20,76 30,73" fill="#5e321b" stroke="#5e321b" stroke-width="5" stroke-linejoin="round"/>
+  <polygon points="58,45 67,50 68,76 58,73" fill="#5e321b" stroke="#5e321b" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="21.5" cy="78.5" r="4" fill="#5e321b"/>
+  <circle cx="27.5" cy="76.5" r="3.6" fill="#5e321b"/>
+  <circle cx="66.5" cy="78.5" r="4" fill="#5e321b"/>
+  <circle cx="60.5" cy="76.5" r="3.6" fill="#5e321b"/>
+  <ellipse cx="44" cy="126" rx="27" ry="32" fill="#7a4122"/>
+  <ellipse cx="44" cy="91" rx="17" ry="10" fill="#7a4122"/>
+  <ellipse cx="44" cy="60" rx="21" ry="20" fill="#7a4122"/>
+  <circle cx="35" cy="42.5" r="5" fill="#7a4122"/>
+  <circle cx="44" cy="40.5" r="5.5" fill="#7a4122"/>
+  <circle cx="53" cy="42.5" r="5" fill="#7a4122"/>
+  <circle cx="41" cy="46.5" r="4.2" fill="#94532c"/>
+  <circle cx="47.5" cy="46" r="4.2" fill="#94532c"/>
+  <ellipse cx="44" cy="74.5" rx="14" ry="11" fill="#b8743f" stroke="#111" stroke-width="2"/>
+  <ellipse cx="44" cy="80" rx="5.4" ry="3.4" fill="#111"/>
+  <ellipse cx="44" cy="83" rx="3.5" ry="4.3" fill="#ff4f6d" stroke="#111" stroke-width="2"/>
+  <ellipse cx="44" cy="69.5" rx="5.6" ry="4" fill="#111"/>
+  <circle cx="35" cy="59" r="3.7" fill="#1a0e08"/>
+  <circle cx="53" cy="59" r="3.7" fill="#1a0e08"/>
+  <g stroke="#111" stroke-width="7" stroke-linejoin="round">
+    <polygon points="75,58 63,65 70,86" fill="#111" stroke-linejoin="round"/>
+    <polygon points="101,58 113,65 106,86" fill="#111" stroke-linejoin="round"/>
+    <ellipse cx="88" cy="127" rx="23" ry="29" fill="#111"/>
+    <ellipse cx="88" cy="96" rx="14" ry="7" fill="#111"/>
+    <ellipse cx="88" cy="74" rx="21" ry="20" fill="#111"/>
   </g>
-  <ellipse cx="84" cy="68" rx="13" ry="10" fill="#a8743f"/>
-  <circle cx="75" cy="56" r="3.4" fill="#1a120c"/>
-  <circle cx="93" cy="56" r="3.4" fill="#1a120c"/>
-  <circle cx="76.2" cy="54.8" r="1.1" fill="#fff"/>
-  <circle cx="94.2" cy="54.8" r="1.1" fill="#fff"/>
-  <ellipse cx="84" cy="64" rx="5" ry="3.8" fill="#2a1a10"/>
-  <path d="M84 67.5v3m0 0q-4 3.2-7 0m7 0q4 3.2 7 0" fill="none" stroke="#2a1a10" stroke-width="1.6" stroke-linecap="round"/>
-
-  <!-- Rottweiler puppy (left): black and tan, folded ears -->
-  <g fill="#1d1714">
-    <path d="M28 48Q13 51 16 67Q24 66 32 56Z"/>
-    <path d="M56 48Q71 51 68 67Q60 66 52 56Z"/>
-    <ellipse cx="42" cy="63" rx="19" ry="18"/>
-  </g>
-  <g fill="#c26a2a">
-    <circle cx="35" cy="53.5" r="2.7"/>
-    <circle cx="49" cy="53.5" r="2.7"/>
-    <ellipse cx="31" cy="69" rx="4" ry="3.2"/>
-    <ellipse cx="53" cy="69" rx="4" ry="3.2"/>
-    <ellipse cx="42" cy="72" rx="10" ry="8"/>
-  </g>
-  <circle cx="35" cy="59.5" r="3.1" fill="#3a2010"/>
-  <circle cx="49" cy="59.5" r="3.1" fill="#3a2010"/>
-  <circle cx="36.1" cy="58.4" r="1" fill="#fff"/>
-  <circle cx="50.1" cy="58.4" r="1" fill="#fff"/>
-  <ellipse cx="42" cy="68.5" rx="4.6" ry="3.3" fill="#120d0a"/>
-  <ellipse cx="42" cy="77.2" rx="2.6" ry="2.3" fill="#e8687a"/>
-  <path d="M42 71.5v2.6m0 0q-3 2.6-6 0m6 0q3 2.6 6 0" fill="none" stroke="#120d0a" stroke-width="1.5" stroke-linecap="round"/>
-
-  <!-- Bowl of kibble -->
-  <g fill="#8a4b1c">
-    <circle cx="34" cy="86" r="4.5"/>
-    <circle cx="45" cy="84" r="4.5"/>
-    <circle cx="57" cy="86" r="4.5"/>
-    <circle cx="69" cy="84" r="4.5"/>
-    <circle cx="81" cy="86" r="4.5"/>
-    <circle cx="93" cy="84" r="4.5"/>
-  </g>
-  <path d="M14 88H114Q112 112 92 116H36Q16 112 14 88Z" fill="#fff8f0"/>
-  <path d="M20 97H108" stroke="#f1d6bb" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="75,58 63,65 70,86" fill="#111" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+  <polygon points="101,58 113,65 106,86" fill="#111" stroke="#111" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="88" cy="127" rx="23" ry="29" fill="#111"/>
+  <ellipse cx="88" cy="96" rx="14" ry="7" fill="#111"/>
+  <ellipse cx="88" cy="74" rx="21" ry="20" fill="#111"/>
+  <ellipse cx="81" cy="65.5" rx="2.9" ry="2.2" fill="#ff9f0a" stroke="#111" stroke-width="2"/>
+  <ellipse cx="95" cy="65.5" rx="2.9" ry="2.2" fill="#ff9f0a" stroke="#111" stroke-width="2"/>
+  <ellipse cx="88" cy="82" rx="12.5" ry="8.5" fill="#ff9f0a" stroke="#111" stroke-width="2"/>
+  <ellipse cx="88" cy="72.5" rx="4.2" ry="7.5" fill="#111"/>
+  <ellipse cx="88" cy="79" rx="5.6" ry="3.9" fill="#111"/>
+  <circle cx="81" cy="71" r="3.7" fill="#111"/>
+  <circle cx="95" cy="71" r="3.7" fill="#111"/>
+  <circle cx="36.3" cy="57.7" r="1.5" fill="#fff"/>
+  <circle cx="54.3" cy="57.7" r="1.5" fill="#fff"/>
+  <circle cx="82.3" cy="69.7" r="1.5" fill="#fff"/>
+  <circle cx="96.3" cy="69.7" r="1.5" fill="#fff"/>
+  <path d="M88 82.6v2.4m0 0q-2.8 2.4-5 0m5 0q2.8 2.4 5 0" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>
 </svg>
