@@ -1,0 +1,32 @@
+{
+  "id": "black-hawk-original-lamb-rice-adult",
+  "brand": "Black Hawk",
+  "name": "Original Lamb & Rice",
+  "type": "dry",
+  "energy": { "kcalPer100g": 377.0 },
+  "nutrients": { "phosphorus": { "percent": 1.4, "kind": "max" } },
+  "adultGuide": [
+    { "weightKg": 5, "gramsLow": 70 },
+    { "weightKg": 10, "gramsLow": 110 },
+    { "weightKg": 15, "gramsLow": 150 },
+    { "weightKg": 25, "gramsLow": 250 },
+    { "weightKg": 35, "gramsLow": 350 },
+    { "weightKg": 50, "gramsLow": 500 },
+    { "weightKg": 60, "gramsLow": 600 },
+    { "weightKg": 70, "gramsLow": 700 },
+    { "weightKg": 80, "gramsLow": 800 }
+  ],
+  "labelNotes": [
+    "For dogs over 35 kg the label says to add 100 g per 10 kg of body weight; HungryDog follows that up to 80 kg.",
+    "Pregnant or nursing dogs may need food available at all times. Keep fresh water available at all times."
+  ],
+  "source": {
+    "kind": "label",
+    "addedOn": "2026-11-15",
+    "notes": "Owner's bag (Australia), 'ORIGINAL Daily feeding guide ADULT' photo; the maker's AU Lamb & Rice page shows the identical table. Bands stored as rows at their ends (they join exactly): 5-10 kg 70-110 g, 10-15 kg 110-150 g, 15-25 kg 150-250 g, 25-35 kg 250-350 g. 'Up to 5kg: 20-70 g' gives no weight for 20 g, so only 5 kg = 70 g is stored (below 5 kg the app uses calories). '35kg+: Add 100g per 10kg of body weight' continues the 25-35 kg slope, so rows 50-80 kg follow it (500-800 g). Energy: maker's page, ME 3,770 kcal/kg = 377.0 kcal/100 g. Phosphorus: maker's guaranteed analysis 'P (max) 1.4%', read as fed (moisture max 10%). Label amounts sit at about 66-82% of a 1.6 x RER estimate from 5 to 35 kg: that is what the label and the maker print. Sizes 3, 10, 20 kg. AAFCO adult maintenance, all breed sizes.",
+    "links": [
+      { "title": "Original Dog Food - Lamb and Rice | Black Hawk Australia", "url": "https://blackhawkpetcare.com/au/our-products/original/adult-dog-lamb-rice", "accessed": "2026-11-15" },
+      { "title": "Original Dog Food - Lamb and Rice | Black Hawk", "url": "https://blackhawkpetcare.com/en/products/dog/original-dog-food-lamb-and-rice/", "accessed": "2026-11-15" }
+    ]
+  }
+}
