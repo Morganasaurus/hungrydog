@@ -69,20 +69,34 @@ in `source.notes`). Flags check:
 Start the `hungrydog` preview and enter one row by hand, for example one cell of the puppy table. Confirm the app
 shows the label's amount, then try a weight between two rows.
 
-## 6. Owner sign-off
+## 6. Branch, commit and pull request
 
-Show the owner:
-- the re-drawn table from `food:report`
-- the energy figure and where it came from
-- any differences from the maker's page and any flags
-- the spot-check result
+Each food (or a small batch the owner sent together) gets its own branch and pull request. The owner reviews it on
+their phone or iPad and **merging is their sign-off**.
 
-Ask them to compare the table with the bag. Don't commit until they confirm.
+1. Start from an up-to-date `main`: `git switch main && git pull`, then `git switch -c food/<id>` (or
+   `fix/<id>` for a correction, `food/<batch-name>` for several).
+2. Commit only the food file(s): `git add src/data/foods/<id>.json`, message `Add food: <Brand> <Name>` (or
+   `Fix food: …`). Follow the session's attribution rules and keep the repo's neutral git identity. If the work
+   also changed app code (a schema change, a new rule), commit that separately on the same branch, with its tests.
+3. Push the branch and open a pull request with `gh pr create`. Title: the commit message. Body:
+   - the re-drawn table from `food:report` (the normal-weight column only for condition tables)
+   - the energy figure and where it came from
+   - the sources (maker pages) and any differences between the owner's label and the maker's page
+   - any flags and their explanation
+   - the in-app spot check (one row by hand, one in-between weight)
+   - judgement calls the owner should know about
+   End with the session's PR attribution line.
+4. CI runs the tests and build, and the **foods** check puts the re-drawn tables on the run's summary page.
+5. Tell the owner the PR is ready, with its link, and ask them to compare the table with the bag and merge it.
+   Don't merge it yourself unless they ask.
 
-## 7. Commit and release
+**Before the GitHub repo exists**, skip the push and PR: commit on `main` and show the owner the same summary in
+chat, then wait for their confirmation.
 
-- Commit just the food file: `git add src/data/foods/<id>.json`, with the message `Add food: <Brand> <Name>` (or
-  `Fix food: …`). Follow the session's attribution rules and keep the repo's neutral git identity.
-- Ship it with the release steps in `CLAUDE.md` (push to `main` → CI tests → image → redeploy in Portainer) when
-  the owner asks.
+## 7. Release
+
+- Merging to `main` builds the image. Then, when the owner asks, follow the `release` skill's last steps: wait for
+  the build and remind them to **Pull and redeploy** the hungrydog stack in Portainer.
+- Clean up: `git switch main && git pull && git branch -d food/<id>`.
 - After a batch of foods, update the memory file for HungryDog if anything about the process changed.

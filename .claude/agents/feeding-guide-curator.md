@@ -46,7 +46,17 @@ existing file in `src/data/foods/` (e.g. `orijen-puppy-large.json`) as a model.
 - Veterinary or prescription diets (renal, hepatic, urinary, weight-loss diets sold through vets): set
   `"vetDiet": true`. Tables by body condition (thin / normal / overweight): put the **normal** column in
   `adultGuide` (the app feeds for target weight) and record the other columns in `source.notes`.
-- Wet food sold in cans, trays or pouches: add `package` (`label` "can", "tray" or "pouch", and `grams`).
+- Wet food sold in cans, trays or pouches: add `package` (`label` "can", "tray", "pouch" or "pack", and `grams`).
+  The owner wants **grams, not can fractions**: if the label gives cans a day, convert at the can's weight (and
+  prefer the maker's own gram table for the same product if one exists). Record the label's cans in `source.notes`.
+- **A rule instead of a table** ("450 g per 5 kg bodyweight"): don't turn it into rows. A straight-line rule
+  overfeeds big dogs and underfeeds small ones. Leave `adultGuide` out so the app feeds from calories (the energy
+  figure is required), and put the rule in a `labelNotes` entry so owners can compare. The owner confirmed this
+  approach (2026-11-15). Such foods are adult-only in the app.
+- **The maker's table is fuller than the label** (more weights than the bag shows): use the maker's rows only if
+  they match the label exactly wherever both have a row. Keep any label-only rows, and say which rows came from
+  where in `source.notes`. If they disagree anywhere, the label's rows win and the extra rows are left out.
+- `source.notes` is limited to 1000 characters: be brief.
 
 ## Check your work
 

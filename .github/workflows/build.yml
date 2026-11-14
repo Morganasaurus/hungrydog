@@ -25,6 +25,37 @@ jobs:
       - run: npm test
       - run: npm run build
 
+  # On pull requests: redraw the tables of any added or changed food on the run's summary page, so the owner can
+  # compare them with the bag before merging. Flags are prompts to double-check, not failures.
+  foods:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: Food tables for this pull request
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$BASE_REF"
+          # Only well-formed ids (lower-case words and dashes) reach the command line.
+          ids=$(git diff --name-only --diff-filter=AM "origin/$BASE_REF" HEAD -- 'src/data/foods/*.json' \
+            | sed -n 's#^src/data/foods/\([a-z0-9-]*\)\.json$#\1#p')
+          {
+            echo "# Food tables"
+            if [ -z "$ids" ]; then
+              echo "No food files added or changed."
+            else
+              echo "Compare each table with the label before merging."
+              echo
+              node scripts/food-report.mjs $ids
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
   image:
     needs: test
     if: github.event_name != 'pull_request'

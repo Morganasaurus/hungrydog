@@ -124,8 +124,19 @@ The main session orchestrates; agents do focused jobs and report back.
 
 - New or corrected foods go through the `add-food` skill (`.claude/skills/add-food/SKILL.md`): intake, research,
   two independent readings compared with `npm run food:report -- --diff`, `npm test` + `npm run food:report`, a check in
-  the app, the owner's sign-off, then a commit of just that file.
-- Shipping is the `release` skill: test, build, commit, push, wait for the image build.
+  the app, then a branch (`food/<id>`) and a pull request. CI's **foods** check redraws the changed tables on the
+  run's summary page; the owner compares them with the bag, and **merging is their sign-off**.
+- Shipping app changes is the `release` skill: test, build, commit, push, wait for the image build.
+
+### First publish to GitHub (not done yet)
+
+1. Create the repo `Morganasaurus/hungrydog` (public), add it as `origin`, push `main`.
+2. Check the first Actions run passes and the image appears on GHCR. Make the package public, or give the
+   portainer host a read token, as for Fret Wiz.
+3. Protect `main` with a ruleset: require a pull request and the **test** check before merging, with the repo
+   admin allowed to bypass (so the `release` skill can still push app changes directly). Food PRs then can't be
+   merged while tests fail.
+4. Run the `security-reviewer` agent before the first public deploy.
 
 ## Deployment
 
