@@ -5,7 +5,7 @@
 //
 // Per 1,000 kcal is how vets compare foods: it doesn't change with how much is fed.
 
-import type { Plan } from "./plan";
+import type { Note, Plan } from "./plan";
 import type { NutrientId } from "./types";
 
 export interface NutrientSummary {
@@ -46,4 +46,61 @@ export function nutrientSummary(plan: Plan, id: NutrientId): NutrientSummary | u
 export function overLimit(s: NutrientSummary | undefined, limitMg: number): boolean | undefined {
   if (!s || s.mgExact === undefined || !Number.isFinite(limitMg) || limitMg <= 0) return undefined;
   return s.mgExact > limitMg;
+}
+
+/**
+ * Phosphorus guide figures, g per 1,000 kcal. There is no official target for a dog's diet (IRIS gives blood
+ * phosphate targets only), so these are shown as typical ranges, and the vet's own limit always comes first.
+ * - Typical therapeutic kidney diets: 0.4–1.2 (Cline, ACVN Nutrition Notes, Today's Veterinary Practice 2016, Table 2).
+ * - Adult maintenance minimum: 1.0 (FEDIAF Nutritional Guidelines 2025, Table III-3b, at 110 kcal/kg^0.75).
+ * - Ordinary maintenance foods usually exceed 1.5 (Cline 2016, "Dietary Phosphorus").
+ */
+export const PHOSPHORUS_GUIDE = { kidneyDiet: [0.4, 1.2] as const, adultMinimum: 1.0, maintenanceUsually: 1.5 };
+
+export interface PhosphorusComparison {
+  band: "below" | "kidney-diet" | "above";
+  /** False when a label minimum or maximum means the true figure could fall in another band. */
+  certain: boolean;
+}
+
+/** Where the plan's g per 1,000 kcal sits against the typical kidney-diet range. */
+export function comparePhosphorus(s: NutrientSummary | undefined): PhosphorusComparison | undefined {
+  if (!s || s.mgExact === undefined || s.gPer1000kcal === undefined) return undefined;
+  const g = s.gPer1000kcal;
+  const [lo, hi] = PHOSPHORUS_GUIDE.kidneyDiet;
+  const band = g < lo ? "below" : g <= hi ? "kidney-diet" : "above";
+  // A minimum can only be higher in truth, a maximum only lower: the band is certain unless that could move it.
+  const couldRise = s.atLeast && band !== "above";
+  const couldFall = s.atMost && band !== "below";
+  return { band, certain: !couldRise && !couldFall };
+}
+
+/**
+ * The owner-facing note placing the plan against the typical kidney-diet range. Always "info": it's general
+ * guidance, not a threshold (only the vet's limit warns). When a label minimum or maximum could move the plan into
+ * another band, it says so and why.
+ */
+export function phosphorusGuideNote(s: NutrientSummary | undefined): Note | undefined {
+  const cmp = comparePhosphorus(s);
+  if (!s || !cmp) return undefined;
+  const [lo, hi] = PHOSPHORUS_GUIDE.kidneyDiet;
+  const range = `${lo}–${hi} g per 1,000 kcal`;
+  const why =
+    s.atLeast && s.atMost
+      ? "some label figures are minimums and some maximums, so the real amount may differ"
+      : s.atLeast
+        ? "a label minimum means the real amount may be higher"
+        : "a label maximum means the real amount may be lower";
+  const text = {
+    "kidney-diet": cmp.certain
+      ? `That's within the range typical of kidney diets (${range}).`
+      : `On these figures that's within the range typical of kidney diets (${range}), but ${why}.`,
+    above: cmp.certain
+      ? `That's more than a typical kidney diet (${range}). Ask your vet whether it suits your dog.`
+      : `That may be more than a typical kidney diet (${range}): ${why}. Ask your vet whether it suits your dog.`,
+    below: cmp.certain
+      ? `That's below the range typical of kidney diets (${range}). Ask your vet if you're unsure.`
+      : `On these figures that's below the range typical of kidney diets (${range}), but ${why}.`,
+  }[cmp.band];
+  return { level: "info", text };
 }

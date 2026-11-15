@@ -28,6 +28,14 @@ export const TIP_SOURCES = {
     title: "Tufts Petfoodology: Treats for dogs with kidney disease",
     url: "https://sites.tufts.edu/petfoodology/2018/05/23/what-treats-can-i-give-my-dog-with-kidney-disease/",
   },
+  acvnCkd: {
+    title: "ACVN Nutrition Notes: Nutritional management of chronic kidney disease (Today's Veterinary Practice, 2016)",
+    url: "https://todaysveterinarypractice.com/wp-content/uploads/sites/4/2016/05/2016-0304_ACVN-Nutrition.pdf",
+  },
+  fediaf: {
+    title: "FEDIAF Nutritional Guidelines 2025 (adult dog minimums)",
+    url: "https://europeanpetfood.org/wp-content/uploads/2025/09/FEDIAF-Nutritional-Guidelines_2025-ONLINE.pdf",
+  },
   tuftsSwitch: { title: "Tufts Petfoodology: How do I switch my pet's food?", url: "https://sites.tufts.edu/petfoodology/2019/11/24/how-do-i-switch-my-pets-food/" },
 };
 
@@ -155,6 +163,7 @@ const CONDITION_TIPS: Record<ConditionId, (onConditionDiet: boolean | undefined)
     lines: [
       "Less phosphorus in the diet helps dogs with kidney disease. Vets usually suggest a kidney (renal) diet from IRIS stage 2, and recommend one at stages 3 and 4.",
       "At stage 1, a renal diet is usually only advised if there's protein in the urine.",
+      "As a guide, kidney diets usually provide about 0.4–1.2 g of phosphorus per 1,000 kcal. Complete adult dog foods are made to provide at least 1.0 g (the AAFCO and FEDIAF minimum) and usually have more than 1.5 g. There's no official target for every dog: your vet sets your dog's.",
       "Your vet checks phosphate in blood tests and may add a phosphate binder with meals if it stays high. Follow their plan for which food and how much.",
       "Foods from the pet store usually have too much phosphorus and protein for anything beyond very mild kidney disease.",
       "Keep fresh water available at all times: dogs with kidney disease can't concentrate their urine well.",
@@ -165,6 +174,13 @@ const CONDITION_TIPS: Record<ConditionId, (onConditionDiet: boolean | undefined)
       onConditionDiet === false
         ? "None of the foods chosen is listed here as a kidney diet. Ask your vet whether your dog should be on one."
         : undefined,
-    sources: [TIP_SOURCES.irisDog, TIP_SOURCES.tuftsKidneyDiet, TIP_SOURCES.tuftsKidneyTreats, TIP_SOURCES.tuftsSwitch],
+    sources: [
+      TIP_SOURCES.irisDog,
+      TIP_SOURCES.acvnCkd,
+      TIP_SOURCES.fediaf,
+      TIP_SOURCES.tuftsKidneyDiet,
+      TIP_SOURCES.tuftsKidneyTreats,
+      TIP_SOURCES.tuftsSwitch,
+    ],
   }),
 };
