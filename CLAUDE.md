@@ -94,8 +94,11 @@ The owner wants it to look and feel like a native iOS/iPadOS app.
 - **Health conditions** (Health picker, `conditions.ts`): picking one shows its nutrients in the result and its tip.
   Kidney disease shows phosphorus: mg a day (from the rounded daily grams, to 10 mg) and g per 1,000 kcal, plus an
   optional limit from the owner's vet (mg/day). No total when any chosen food lacks a figure (it's named instead);
-  label minimums show as "at least". We never give our own "safe" phosphorus range: IRIS publishes none for diet
-  content, so the vet's limit is the only threshold. Foods record `nutrients.phosphorus` (percent as fed, kind
+  label minimums show as "at least". IRIS publishes no diet phosphorus target, so the app only gives a *typical*
+  range, never a target: kidney diets 0.4–1.2 g per 1,000 kcal (ACVN Nutrition Notes 2016), ordinary adult food
+  at least 1.0 (FEDIAF 2025) and usually over 1.5. The plan is placed against that range (`phosphorusGuideNote`: always an
+  info note, hedged with the right reason when a label minimum/maximum could change the band); only the vet's limit
+  warns, and its note comes first. Foods record `nutrients.phosphorus` (percent as fed, kind
   typical/min/max) and `forConditions` (e.g. renal diets → `["kidney"]`); the kidney tip cautions when no chosen
   food is a kidney diet. A new condition needs vet-sourced tip wording, its nutrient data, and tests.
 - **Never invent label numbers.** Only what's printed on the owner's guide or on a cited page (maker's site

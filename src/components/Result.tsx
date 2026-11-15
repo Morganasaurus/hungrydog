@@ -1,5 +1,5 @@
 import { NUTRIENT_NAME, type Condition } from "../feeding/conditions";
-import { nutrientSummary, overLimit } from "../feeding/nutrients";
+import { nutrientSummary, overLimit, phosphorusGuideNote } from "../feeding/nutrients";
 import type { Note, Plan, PlanItem } from "../feeding/plan";
 import type { NutrientId } from "../feeding/types";
 
@@ -72,6 +72,9 @@ function NutrientLine({ plan, id, limitMg }: { plan: Plan; id: NutrientId; limit
         ? `Within your vet's limit of ${limitMg!.toLocaleString()} mg a day on these figures, but a label minimum means the real amount may be higher.`
         : `Within your vet's limit of ${limitMg!.toLocaleString()} mg a day.`,
     });
+  // The vet's limit first; then, for phosphorus, where the plan sits against typical kidney diets.
+  const guide = id === "phosphorus" ? phosphorusGuideNote(s) : undefined;
+  if (guide) notes.push(guide);
   return (
     <>
       <p className="nutrient">

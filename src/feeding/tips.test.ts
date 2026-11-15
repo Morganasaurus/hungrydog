@@ -63,6 +63,11 @@ describe("age tip", () => {
     expect(t.lines.some((l) => l.includes("males 50–60 kg, females 35–48 kg"))).toBe(true);
     expect(t.caution).toBeUndefined();
   });
+  it("gives the typical kidney-diet phosphorus range with its sources", () => {
+    const t = conditionTip("kidney", true);
+    expect(t.lines.some((l) => l.includes("0.4–1.2 g of phosphorus per 1,000 kcal"))).toBe(true);
+    expect(t.sources.map((s) => s.url).join(" ")).toMatch(/todaysveterinarypractice\.com.*europeanpetfood\.org/);
+  });
 
   it("for puppies, leads with when they finish growing", () => {
     const t = ageTip("puppy", undefined, life, rottie, 50)!;
