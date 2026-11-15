@@ -23,7 +23,7 @@ with defaults, never rename the key, and treat saved data as untrusted).
   - `foods.ts`: loads the food list and builds custom foods.
   - `breeds.ts`: loads breeds and life-stage guidance.
   - `tips.ts`: the meals-a-day, age and health-condition tips (sourced wording, tested in `tips.test.ts`).
-  - `conditions.ts`: health conditions for the Health picker and the nutrients each one shows.
+  - `conditions.ts`: health conditions for the Dietary requirements picker and the nutrients each one shows.
   - `nutrients.ts`: daily nutrient totals for a plan (phosphorus: mg a day, g per 1,000 kcal) and the vet-limit check.
 - `src/data/foods/*.json`: **the food database**, one file per product, file name = `id`. Added progressively from
   guides the owner supplies (see "Changing food data").
@@ -91,7 +91,7 @@ The owner wants it to look and feel like a native iOS/iPadOS app.
 - **Veterinary diets** (`"vetDiet": true`, e.g. renal or prescription foods): amounts still come from the label,
   but the result leads with a warning that the vet's plan and amounts come first, and that weight changes belong to
   the vet's plan.
-- **Health conditions** (Health picker, `conditions.ts`): picking one shows its nutrients in the result and its tip.
+- **Health conditions** (Dietary requirements picker, `conditions.ts`): picking one shows its nutrients in the result and its tip.
   Kidney disease shows phosphorus: mg a day (from the rounded daily grams, to 10 mg) and g per 1,000 kcal, plus an
   optional limit from the owner's vet (mg/day). No total when any chosen food lacks a figure (it's named instead);
   label minimums show as "at least". We never give our own "safe" phosphorus range: IRIS publishes none for diet

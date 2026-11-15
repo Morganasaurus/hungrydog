@@ -117,8 +117,8 @@ export default function App() {
                   ))}
                 </SelectRow>
               )}
-              <SelectRow label="Health" value={form.condition} onChange={(condition) => update((f) => ({ ...f, condition }))}>
-                <option value="">None known</option>
+              <SelectRow label="Dietary requirements" value={form.condition} onChange={(condition) => update((f) => ({ ...f, condition }))}>
+                <option value="">None</option>
                 {CONDITIONS.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
